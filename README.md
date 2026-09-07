@@ -12,37 +12,24 @@
 
 ## About
 
-You are one cuttlefish, hatched alone on a coral reef, roughly the size of a
-thumbnail. Nothing is guarding you. You have a handful of months to live, which
-is the truth about cuttlefish, and in that time you have to eat enough to grow,
-stay unseen by everything that hunts, dig a home out of the sand, and if you
-manage all of that, leave a clutch of eggs fastened to your own ceiling.
+You are a cuttlefish, hatched alone on a coral reef. You have a handful of months to live, 
+and in that time you have to eat enough to grow,
+stay unseen by everything that hunts, build a home, and, if lucky, leave a clutch of eggs.
 
-Then you play your own heir on the same reef, inheriting the water your parent
-left behind — including the algae they never cleared and the strength they built
-or spent.
+Then you play your own heir. Hatchlings disperse on the current, the way real
+ones do, so the heir wakes on an unfamiliar stretch of reef, but it carries
+what the last life made of itself: the strength or the frailty your parent bred
+into the line, and, at the far edge of the new map, the silted ruin of the den
+you were born in, with your keepsakes still in it if you go and dig them out.
 
 > **Hatch. Hunt. Hide. Hand it down.**
-
-Most lives end without a clutch. That is the honest version, and the game does
-not hide it. It is a quiet, watchful game rather than a fast one. Camouflage
-matters more than speed. Nothing here can be fought head-on and won.
 
 ---
 
 ## Why I made it
 
-It began as an easter egg — a small cuttlefish hidden on my personal site, a
-thing you could find if you poked at the page long enough. People kept finding
-it, and I kept wanting it to have somewhere to swim to. I started building it
-that reef in **July 2026**, and it stopped being an easter egg somewhere around
-the second week.
-
-What kept me going was the animal itself. A cuttlefish is colour-blind and still
-the finest colourist in the ocean. Three hearts, W-shaped pupils, skin it thinks
-with. It lives about a year, breeds once, and dies — and that is not a tragedy to
-it, it is the shape of the life. I wanted a game where that shape was the design
-rather than a failure state.
+It began as an easter egg: a small cuttlefish hidden on my personal site, a
+thing you could find if you poked at the page long enough. But I kept wanting it to make into into something bigger.
 
 ---
 
