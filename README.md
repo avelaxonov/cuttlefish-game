@@ -176,7 +176,7 @@ Held back from this edition: a prologue cutscene, passive communication with the
 
 ## Credits
 
-Made by **Avelina Axonov**. Begun July 2026; First Edition, September 2026.
-Built with AI-assisted development (Claude, Anthropic), directed and playtested through every revision.
+Created by **Avelina Axonov**. July 2026; First Edition, September 2026.
+Built with AI-assisted software (Claude Design, Anthropic), directed and playtested by real humans.
 
 Music: *Art of Silence* by Uniq and *Dreamcatcher* by Onycs, CC BY 3.0.
