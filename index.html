@@ -16,6 +16,14 @@
 <body>
 <x-dc>
 <helmet>
+<title>An Inkling</title>
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="./favicon.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="An Inkling">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
@@ -1050,31 +1058,64 @@
   <!-- ============ TOUCH CONTROLS (mobile landscape) ============ -->
   <sc-if value="{{ showTouch }}" hint-placeholder-val="{{ false }}">
     <div style="position:absolute;inset:0;z-index:40;pointer-events:none;touch-action:none;user-select:none;-webkit-user-select:none;">
-      <div style="position:absolute;top:14px;right:16px;display:flex;gap:8px;pointer-events:auto;">
-        <button onPointerDown="{{ tMap }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(155,214,208,.35);border-radius:100px;padding:9px 15px;background:rgba(10,31,29,.78);color:#9bd6d0;touch-action:none;" style-active="transform:scale(.92);background:rgba(111,214,208,.25);">map</button>
-        <button onPointerDown="{{ tQuests }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(155,214,208,.35);border-radius:100px;padding:9px 15px;background:rgba(10,31,29,.78);color:#9bd6d0;touch-action:none;" style-active="transform:scale(.92);background:rgba(111,214,208,.25);">tasks</button>
-        <button onPointerDown="{{ tPause }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(201,162,94,.45);border-radius:100px;padding:9px 15px;background:rgba(10,31,29,.78);color:#e7c486;touch-action:none;" style-active="transform:scale(.92);background:rgba(201,162,94,.25);">menu</button>
-      </div>
       <div ref="{{ refJoyZone }}" onPointerDown="{{ joyDown }}" onPointerMove="{{ joyMove }}" onPointerUp="{{ joyUp }}" onPointerCancel="{{ joyUp }}" style="position:absolute;left:0;top:0;width:48%;height:100%;pointer-events:auto;touch-action:none;">
         <div ref="{{ refJoyBase }}" style="position:absolute;left:0;top:0;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;background:rgba(8,24,22,.34);border:1.5px solid rgba(111,214,208,.30);opacity:0;transition:opacity .13s ease;pointer-events:none;display:flex;align-items:center;justify-content:center;">
           <div ref="{{ refJoyKnob }}" style="width:64px;height:64px;border-radius:50%;background:rgba(111,214,208,.34);border:1.5px solid rgba(155,214,208,.8);box-shadow:0 4px 16px rgba(0,0,0,.45);pointer-events:none;"></div>
         </div>
         <div ref="{{ refJoyHint }}" style="position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);white-space:nowrap;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(155,214,208,.5);pointer-events:none;transition:opacity .5s ease;">touch to swim</div>
       </div>
-      <div style="position:absolute;right:22px;bottom:24px;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:auto;">
+      <div style="position:absolute;top:14px;left:16px;z-index:3;display:flex;flex-wrap:wrap;gap:9px;pointer-events:auto;max-width:62%;">
+        <button onPointerDown="{{ tMap }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(155,214,208,.35);border-radius:100px;padding:14px 19px;background:rgba(10,31,29,.82);color:#9bd6d0;touch-action:none;" style-active="transform:scale(.92);background:rgba(111,214,208,.25);">map</button>
+        <button onPointerDown="{{ tQuests }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(155,214,208,.35);border-radius:100px;padding:14px 19px;background:rgba(10,31,29,.82);color:#9bd6d0;touch-action:none;" style-active="transform:scale(.92);background:rgba(111,214,208,.25);">tasks</button>
+        <button onPointerDown="{{ tPause }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(201,162,94,.45);border-radius:100px;padding:14px 19px;background:rgba(10,31,29,.82);color:#e7c486;touch-action:none;" style-active="transform:scale(.92);background:rgba(201,162,94,.25);">menu</button>
+        <sc-if value="{{ showTutSkip }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:1px;align-items:stretch;">
+            <button onPointerDown="{{ tSkipStep }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(201,162,94,.3);border-radius:100px 0 0 100px;padding:14px 16px;background:rgba(10,31,29,.82);color:#c9a25e;touch-action:none;" style-active="transform:scale(.94);background:rgba(201,162,94,.22);">skip step</button>
+            <button onPointerDown="{{ tEndTut }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12.5px;border:1px solid rgba(201,162,94,.3);border-left:none;border-radius:0 100px 100px 0;padding:14px 17px;background:rgba(10,31,29,.82);color:#c9a25e;touch-action:none;" style-active="transform:scale(.94);background:rgba(201,162,94,.22);">✕</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="position:absolute;right:20px;bottom:20px;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:auto;">
         <div style="display:flex;gap:9px;">
-          <button onPointerDown="{{ tCamo }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:13px;padding:11px 9px;min-width:52px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">camo</button>
-          <button onPointerDown="{{ tBury }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:13px;padding:11px 9px;min-width:52px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">bury</button>
-          <button onPointerDown="{{ tSignal }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:13px;padding:11px 9px;min-width:52px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">signal</button>
-          <button onPointerDown="{{ tInk }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:13px;padding:11px 9px;min-width:52px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">ink</button>
-          <button onPointerDown="{{ tDigDown }}" onPointerUp="{{ tDigUp }}" onPointerCancel="{{ tDigUp }}" onPointerLeave="{{ tDigUp }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:13px;padding:11px 9px;min-width:52px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(201,162,94,.3);">dig</button>
+          <button onPointerDown="{{ tCamo }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:14px;padding:15px 11px;min-width:66px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">camo</button>
+          <button onPointerDown="{{ tBury }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:14px;padding:15px 11px;min-width:66px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">bury</button>
+          <button onPointerDown="{{ tSignal }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:14px;padding:15px 11px;min-width:66px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">signal</button>
+          <button onPointerDown="{{ tInk }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:14px;padding:15px 11px;min-width:66px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.25);">ink</button>
+          <button onPointerDown="{{ tDigDown }}" onPointerUp="{{ tDigUp }}" onPointerCancel="{{ tDigUp }}" onPointerLeave="{{ tDigUp }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,162,94,.4);border-radius:14px;padding:15px 11px;min-width:66px;background:rgba(10,31,29,.72);color:#e9e3d6;touch-action:none;" style-active="transform:scale(.9);background:rgba(201,162,94,.3);">dig</button>
         </div>
         <div style="display:flex;align-items:flex-end;gap:12px;">
-          <button onPointerDown="{{ tCollect }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1px solid rgba(155,214,208,.5);border-radius:50%;width:60px;height:60px;background:rgba(10,31,29,.72);color:#9bd6d0;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.28);">grab</button>
-          <button onPointerDown="{{ tJetDown }}" onPointerUp="{{ tJetUp }}" onPointerCancel="{{ tJetUp }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid rgba(201,162,94,.6);border-radius:50%;width:66px;height:66px;background:rgba(10,31,29,.72);color:#e7c486;touch-action:none;" style-active="transform:scale(.9);background:rgba(201,162,94,.3);">jet</button>
-          <button onPointerDown="{{ tStrike }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border:none;border-radius:50%;width:84px;height:84px;background:#6fd6d0;color:#0a1f1d;box-shadow:0 6px 20px rgba(111,214,208,.35);touch-action:none;" style-active="transform:scale(.9);background:#8fe3dd;">strike</button>
+          <button onPointerDown="{{ tCollect }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1px solid rgba(155,214,208,.5);border-radius:50%;width:74px;height:74px;background:rgba(10,31,29,.72);color:#9bd6d0;touch-action:none;" style-active="transform:scale(.9);background:rgba(111,214,208,.28);">grab</button>
+          <sc-if value="{{ jetOff }}" hint-placeholder-val="{{ true }}">
+            <button onPointerDown="{{ tJetDown }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid rgba(201,162,94,.6);border-radius:50%;width:82px;height:82px;background:rgba(10,31,29,.72);color:#e7c486;touch-action:none;" style-active="transform:scale(.9);background:rgba(201,162,94,.3);">sprint</button>
+          </sc-if>
+          <sc-if value="{{ jetOn }}" hint-placeholder-val="{{ false }}">
+            <button onPointerDown="{{ tJetDown }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid #e7c486;border-radius:50%;width:82px;height:82px;background:rgba(201,162,94,.85);color:#0a1f1d;box-shadow:0 0 18px rgba(201,162,94,.5);touch-action:none;" style-active="transform:scale(.9);">sprint</button>
+          </sc-if>
+          <button onPointerDown="{{ tStrike }}" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border:none;border-radius:50%;width:100px;height:100px;background:#6fd6d0;color:#0a1f1d;box-shadow:0 6px 20px rgba(111,214,208,.35);touch-action:none;" style-active="transform:scale(.9);background:#8fe3dd;">strike</button>
         </div>
       </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ FULLSCREEN TOGGLE (laptop + phone) ============ -->
+  <sc-if value="{{ showFsBtn }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ toggleFs }}" title="{{ fsTitle }}" aria-label="{{ fsTitle }}" style="position:absolute;top:13px;right:14px;z-index:120;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(155,214,208,.3);border-radius:12px;background:rgba(8,24,22,.6);color:#9bd6d0;padding:0;touch-action:manipulation;" style-hover="background:rgba(111,214,208,.22);color:#f4efe4;border-color:rgba(155,214,208,.6);" style-active="transform:scale(.92);">
+      <sc-if value="{{ fsIn }}" hint-placeholder-val="{{ false }}">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v6H4"></path><path d="M3 3l7 7"></path><path d="M14 4v6h6"></path><path d="M21 3l-7 7"></path><path d="M10 20v-6H4"></path><path d="M3 21l7-7"></path><path d="M14 20v-6h6"></path><path d="M21 21l-7-7"></path></svg>
+      </sc-if>
+      <sc-if value="{{ fsOut }}" hint-placeholder-val="{{ true }}">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V3h6"></path><path d="M3 3l7 7"></path><path d="M21 9V3h-6"></path><path d="M21 3l-7 7"></path><path d="M3 15v6h6"></path><path d="M3 21l7-7"></path><path d="M21 15v6h-6"></path><path d="M21 21l-7-7"></path></svg>
+      </sc-if>
+    </button>
+  </sc-if>
+
+  <!-- ============ ONE-TAP FULLSCREEN (phones, on rotate to landscape) ============ -->
+  <sc-if value="{{ showFsPrompt }}" hint-placeholder-val="{{ false }}">
+    <div onPointerDown="{{ acceptFsPrompt }}" style="position:absolute;inset:0;z-index:210;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:rgba(4,16,14,.94);text-align:center;padding:26px;cursor:pointer;touch-action:manipulation;">
+      <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="#6fd6d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V3h6"></path><path d="M3 3l7 7"></path><path d="M21 9V3h-6"></path><path d="M21 3l-7 7"></path><path d="M3 15v6h6"></path><path d="M3 21l7-7"></path><path d="M21 15v6h-6"></path><path d="M21 21l-7-7"></path></svg>
+      <div style="font-family:'Fraunces',serif;font-size:24px;color:#f4efe4;">Tap to go fullscreen</div>
+      <div style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:#9bd6d0;max-width:330px;line-height:1.5;">The address bar gets out of the way. You can leave fullscreen from the corner button any time.</div>
+      <div onPointerDown="{{ dismissFsPrompt }}" style="margin-top:6px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6f8f88;padding:10px 16px;">no thanks</div>
     </div>
   </sc-if>
 
@@ -1083,7 +1124,7 @@
     <div style="position:absolute;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:rgba(4,16,14,.97);text-align:center;padding:30px;">
       <div style="width:88px;height:56px;border:2.5px solid #6fd6d0;border-radius:10px;animation:cfRot 2.6s ease-in-out infinite;"></div>
       <div style="font-family:'Fraunces',serif;font-weight:400;font-size:26px;color:#f4efe4;margin:0;">Turn your device</div>
-      <div style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:#9bd6d0;max-width:320px;line-height:1.5;">This reef is best explored in landscape — rotate to dive in.</div>
+      <div style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:#9bd6d0;max-width:320px;line-height:1.5;">This reef is best explored in landscape — rotate to dive in, and you can go fullscreen with one tap.</div>
     </div>
   </sc-if>
 
@@ -1161,8 +1202,8 @@ class Component extends DCLogic {
     {id:'move',   short:'Swim.',                      touch:'Drag the left side to swim.'},
     {id:'hunt',   short:'Strike a shrimp.'},
     {id:'camo',   short:'Vanish into the reef.'},
-    {id:'swim',   short:'Switch to jet-swimming.',    touch:'Hold JET to switch and go.'},
-    {id:'jet',    short:'Burst forward.',             touch:'Hold JET to burst forward.'},
+    {id:'swim',   short:'Switch to jet-swimming.',    touch:'Tap SPRINT to jet-swim.'},
+    {id:'jet',    short:'Burst forward.',             touch:'Tap SPRINT and go.'},
     {id:'ink',    short:'Loose a cloud of ink.'},
     {id:'light',  short:'Flash your skin-light.'},
     {id:'bury',   short:'Sink into loose sand.'},
@@ -1353,6 +1394,14 @@ class Component extends DCLogic {
       tStrike:this._btnDown('strike'), tCollect:this._btnDown('collect'), tInk:this._btnDown('ink'),
       tCamo:this._btnDown('camo'), tBury:this._btnDown('bury'), tSignal:this._btnDown('signal'),
       tJetDown:this._jetDown, tJetUp:this._jetUp, tDigDown:this._digDown, tDigUp:this._digUp,
+      jetOn:!!(this.p&&this.p.swimMode==='jet'), jetOff:!(this.p&&this.p.swimMode==='jet'),
+      showTutSkip:this._mobileOn()&&this.tut!=null&&this.tut>=0&&s.screen==='play'&&!!this.p&&!this.p.demo,
+      tSkipStep:this._tSkipStep, tEndTut:this._tEndTut,
+      showFsBtn:this._fsSupported()&&!this.state.fsBad&&(s.screen==='play'||s.screen==='title')&&!this.state.portrait,
+      fsIn:!!this._fsEl(), fsOut:!this._fsEl(), toggleFs:this._toggleFsBtn,
+      fsTitle:this._fsEl()?'Leave fullscreen':'Fullscreen',
+      showFsPrompt:!!this.state.fsPrompt,
+      acceptFsPrompt:this._acceptFsPrompt, dismissFsPrompt:this._dismissFsPrompt,
       tMap:()=>{ if(this.p&&!this.p.demo){ this._tutHit&&this._tutHit('map'); this.setState({screen:'map'}); } },
       tQuests:()=>{ if(this.p&&!this.p.demo){ this._tutHit&&this._tutHit('quests'); this.setState({screen:'quests'}); } },
       tPause:()=>{ if(this.p&&!this.p.demo) this.setState({screen:'pause'}); },
@@ -1517,10 +1566,28 @@ class Component extends DCLogic {
   _resizeCanvas(){ const el=this.cv; if(!el) return; const host=el.parentElement||el;
     const cw=host.clientWidth||window.innerWidth||1520, ch=host.clientHeight||window.innerHeight||950;
     const asp=Math.max(1.25,Math.min(2.7,cw/Math.max(1,ch))); this.VH=950; const vw=Math.round(950*asp);
-    if(el.width!==vw){ el.width=vw; el.height=950; } this.VW=vw; el.style.objectFit='fill'; }
+    if(el.width!==vw){ el.width=vw; el.height=950; } this.VW=vw; el.style.objectFit='fill';
+    // how hard the 950-tall canvas is being stretched: HUD text and boxes counter-scale by this so
+    // going fullscreen doesn't magnify every card (see _applyTextScale)
+    this._fitK=Math.max(0.72,Math.min(1,950/Math.max(320,ch)));
+    this._applyTextScale&&this._applyTextScale(); }
   _applyFit(){ this._resizeCanvas(); }
   // ---- real full screen (browser chrome, OS bars and address bar all gone) ----
   _fsEl(){ return document.fullscreenElement||document.webkitFullscreenElement||null; }
+  // iOS Safari has no element fullscreen — don't show a button that can only disappoint
+  _fsSupported(){ const d=document.documentElement;
+    return !!(d.requestFullscreen||d.webkitRequestFullscreen); }
+  _toggleFsBtn=(e)=>{ if(e&&e.preventDefault) e.preventDefault(); this._fsPromptDone=1; this._toggleFullscreen(); };
+  _acceptFsPrompt=(e)=>{ if(e&&e.preventDefault) e.preventDefault();
+    this._fsPromptDone=1; this.setState({fsPrompt:false}); this._toggleFullscreen(); };
+  _dismissFsPrompt=(e)=>{ if(e){ if(e.preventDefault) e.preventDefault(); if(e.stopPropagation) e.stopPropagation(); }
+    this._fsPromptDone=1; this.setState({fsPrompt:false}); };
+  _tSkipStep=(e)=>{ if(e&&e.preventDefault) e.preventDefault();
+    if(this.tut==null||this.tut<0) return;
+    const st=this.TUT[this.tut]; if(st) this._tutHit(st.id); };
+  _tEndTut=(e)=>{ if(e&&e.preventDefault) e.preventDefault();
+    if(this.tut==null||this.tut<0) return;
+    this.tut=-1; this.toast('You shrug off the old instincts.'); this._announceQuests(1200); };
   _fsFail(){ this.setState({fsBad:true}); clearTimeout(this._fsBadT); this._fsBadT=setTimeout(()=>this.setState({fsBad:false}),4200); }
   _toggleFullscreen(){
     const d=document.documentElement;
@@ -1552,7 +1619,10 @@ class Component extends DCLogic {
   refMap=(el)=>{ if(el){ this.mapCv=el; this.mapCx=el.getContext('2d'); this._installTextScale(this.mapCx); } };
   // ---- ACCESSIBILITY: text size. One hook scales EVERY canvas font by uiScale, so all in-game
   // HUD + world text enlarges uniformly. Boxes sized from measureText adapt automatically. ----
-  _applyTextScale(){ this.uiScale=({normal:1,large:1.16,larger:1.32}[(this.opts&&this.opts.textScale)||'normal'])||1; }
+  _applyTextScale(){ const pick=({normal:1,large:1.16,larger:1.32}[(this.opts&&this.opts.textScale)||'normal'])||1;
+    // The canvas is authored 950 tall and stretched to the window, so a tall fullscreen screen used to
+    // magnify every HUD box with it. Counter-scale the UI so it keeps a steady physical size.
+    this.uiScale=pick*(this._fitK||1); }
   _installTextScale(ctx){ if(!ctx||ctx._tsHook) return;
     const proto=Object.getPrototypeOf(ctx); const desc=proto&&Object.getOwnPropertyDescriptor(proto,'font');
     if(!desc||!desc.set||!desc.get) return; ctx._tsHook=true; const self=this;
@@ -1689,20 +1759,20 @@ class Component extends DCLogic {
       setTimeout(()=>{ this._tidbitI=(this._tidbitI+1)%this._tidbitOrder.length; this._tidbitOpacity=1; this.setState({qv:this.state.qv+1}); }, 950);
     }, 11000); } }
   REEF_TIDBITS=[
-    {tag:'did you know',text:'A cuttlefish has three hearts, and blue-green blood.'},
-    {tag:'did you know',text:'A cuttlefish has one visual pigment, yet may still read colour its own way.'},
+    {tag:'did you know',text:'Three hearts, and blood turned blue-green by copper, not iron.'},
+    {tag:'did you know',text:'One visual pigment in the eye — colour-blind by that measure, yet unmatched at colour disguise. Nobody has settled how.'},
     {tag:'field tip',text:'Bury in pale sand and wait. The crab never sees it coming.'},
     {tag:'field tip',text:'Ink is a decoy. Release it, then jet away.'},
-    {tag:'did you know',text:'Parrotfish poop out white sand. Beaches are made of it.'},
+    {tag:'did you know',text:'Parrotfish scrape coral rock for the algae in it and pass the rest as sand.'},
     {tag:'field tip',text:'Follow a conch at night. It turns up buried clams.'},
-    {tag:'did you know',text:'Octopuses ring their dens with shells. So can you.'},
-    {tag:'did you know',text:'Water too warm for too long turns coral bone-white.'},
-    {tag:'field tip',text:'Stone guards the eggs. Weed hides the den.'},
-    {tag:'did you know',text:'A moray\u2019s open mouth is breathing, not a threat.'},
+    {tag:'did you know',text:'Octopuses pile shells and stones at the den mouth. So can you.'},
+    {tag:'did you know',text:'Held too warm too long, coral expels the algae that feed it and pales.'},
+    {tag:'field tip',text:'Stone strengthens the walls. Weed breaks up the outline.'},
+    {tag:'did you know',text:'A moray gapes to pump water over its gills — which does not make it safe to swim into.'},
     {tag:'field tip',text:'Sprint to the wrasses. A chase breaks off there.'},
-    {tag:'did you know',text:'A cuttlefish lives months, not years. Leave a clutch.'},
-    {tag:'field tip',text:'Parrotfish sleep in a bag of their own slime.'},
-    {tag:'did you know',text:'A startled sea cucumber fires sticky threads. Keep clear.'}
+    {tag:'did you know',text:'Most cuttlefish live a year or two and breed once. Leave a clutch.'},
+    {tag:'did you know',text:'Some parrotfish sleep wrapped in a cocoon of their own mucus.'},
+    {tag:'did you know',text:'Some sea cucumbers fire sticky threads when handled. Keep clear.'}
   ];
   _agoLabel(ts){ if(!ts) return 'long ago'; const s=(Date.now()-ts)/1000;
     if(s<60) return 'just now'; if(s<3600) return (s/60|0)+' min ago'; if(s<86400) return (s/3600|0)+'h ago';
@@ -1997,7 +2067,7 @@ class Component extends DCLogic {
       {label:'visual effects',val:o.fx==='low'?'REDUCED':'FULL',pick:()=>{this.opts.fx=o.fx==='low'?'full':'low';save();}},
       {label:'animated main menu',val:o.menuAnim===false?'OFF (static reef)':'ON',pick:()=>{this.opts.menuAnim=o.menuAnim===false;save();}},
       {label:'mouse buttons',val:o.scheme==='mouse'?'ON':'OFF',sub:'left-click to strike, right-click to hide. Keys work either way.',pick:()=>{this.opts.scheme=(o.scheme==='mouse')?'keyboard':'mouse';save(); this.toast(this.opts.scheme==='mouse'?'mouse buttons on':'keys only');}},
-      {label:'touch controls',val:({on:'ON',off:'OFF'}[o.touch||'off']),sub:'on-screen buttons for phones and tablets. Turn the phone sideways.',pick:()=>{this.opts.touch=(o.touch==='on')?'off':'on';save();}},
+      {label:'touch controls',val:({auto:'AUTO · on for phones',on:'ALWAYS ON',off:'OFF'}[o.touch||'auto']),sub:'on-screen buttons for phones and tablets. Turn the phone sideways.',pick:()=>{const c=['auto','on','off']; this.opts.touch=c[(c.indexOf(o.touch||'auto')+1)%3]; this._touchDev=null; save();}},
       {label:'text size',val:({normal:'default',large:'large',larger:'largest'}[o.textScale||'normal']),sub:'bigger in-game text, for large screens or easier reading.',pick:()=>{const c=['normal','large','larger'];this.opts.textScale=c[(c.indexOf(o.textScale||'normal')+1)%3];this._applyTextScale();save();}},
       {label:'language',val:'English',pick:()=>{}}
     ];
@@ -2096,7 +2166,7 @@ class Component extends DCLogic {
       home:[
         mk('home:0','Your true den','enter: '+k('collect'),'One den is HOME. You rest, save and lay eggs there. Others are only shelter.','den'),
         mk('home:1','Making a den','dig: '+k('build'),'Take a cave from its tenant, or hold the dig key on open sand to make your own.','dig'),
-        mk('home:2','Building it up','inside den: 1\u20134','Inside, press 1 to 4: weed hides, stone guards, shell heals, wood holds the roof.','den'),
+        mk('home:2','Building it up','inside den: 1\u20134','Inside, press 1 to 4: weed hides the mouth, stone strengthens the walls, shell mends you, wood shores the roof.','den'),
         mk('home:3','Keepsakes',k('collect'),'Sea glass, shells, a molt, a pearl. Rare finds. Mount them in your home den.','keepsake'),
         mk('home:4','The line goes on','','Court a mate, lead them to your den, and lay eggs. An heir carries your line on.','signal'),
         mk('home:5','Heirlooms','','Your birth-den ruin sits at the map edge. Dig there for your line\u2019s keepsakes.','heirloom'),
@@ -2106,13 +2176,13 @@ class Component extends DCLogic {
         mk('sp:shark','Reef shark',k('ink'),'The reef\u2019s top hunter, day and night. Camouflage will not fully fool it.','@shark'),
         mk('sp:grouper','Grouper',k('strike')+' snout','A patient ambusher in the coral. It hangs still, then inhales prey in one gulp.','@grouper'),
         mk('sp:cuda','Barracuda','','A silver arrow of open water, fast in one dash. It dislikes tight cover.','@barracuda'),
-        mk('sp:moray','Moray eel','','Coiled in a cave, with poor eyes. Hold still and it strikes at nothing.','@moray'),
+        mk('sp:moray','Moray eel','','Coiled in a cave, hunting more by scent than sight. Hold still and it strikes at nothing.','@moray'),
         mk('sp:octo','Octopus','','A night hunter that folds into the rocks, then unfolds to ambush you.','@octopus'),
         hdr('forage','FOOD & FORAGERS \u00b7 what you eat'),
         mk('sp:shrimp','Shrimp',k('strike'),'The reef\u2019s daily bread. Quick to bolt, easy to catch. Flush them from crevices.','@shrimp'),
         mk('sp:crab','Crab',k('bury')+' then '+k('strike'),'Armored. A face-on strike glances off. Ambush it, or flip it and hit the belly.','@crab'),
         mk('sp:minnow','Minnows & reef fish','','Small darting fish. They gather thickest at night.','@minnow'),
-        mk('sp:parrot','Parrotfish','','Beaked grazers that scrape algae all day and sleep in a mucus cocoon.','@parrot'),
+        mk('sp:parrot','Parrotfish','','Beaked grazers that rasp algae off coral rock; some sleep in a mucus cocoon.','@parrot'),
         mk('sp:squirrel','Squirrelfish','','Big-eyed and nocturnal. They hide by day and forage after dark.','@squirrel'),
         hdr('neigh','NEIGHBOURS \u00b7 the reef\u2019s own'),
         mk('sp:cuttle','Other cuttlefish',k('signal'),'Your own kind: solitary, curious, clever. Answer in skin-light.','@cuttle'),
@@ -2123,9 +2193,9 @@ class Component extends DCLogic {
         mk('sp:lobster','Spiny lobster','','A slow armored brawler that wants your cave. Evict one for its shell.','@lobster'),
         mk('sp:damsel','Farmer damselfish','','A tiny firebrand farming its own algae patch. It drives off anything that nears.','@damsel'),
         hdr('sessile','STILL LIFE \u00b7 the reef that stays put'),
-        mk('sp:anemone','Anemone & clownfish','','A flower of stinging tentacles. Brush it and it burns.','@anemone'),
+        mk('sp:anemone','Anemone & clownfish','','An animal, not a flower: a ring of stinging tentacles. Brush it and it burns.','@anemone'),
         mk('sp:urchin','Sea urchin','','A pincushion that mows algae. Its spines prick anything that touches it.','@urchin'),
-        mk('sp:star','Sea star','','Slow seabed grazers. Their cousin the crown-of-thorns kills coral. Pry it off.','@star'),
+        mk('sp:star','Sea star','','Slow seabed scavengers. Their cousin the crown-of-thorns eats coral. Pry it off.','@star'),
         mk('sp:cuke','Sea cucumber','','It cleans the seabed. Poke it and it fires sticky threads that gum you up.','@cuke'),
         mk('sp:conch','Conch','','A big spiral snail that plows night sand for algae. You can lift and carry one.','@conch'),
         mk('sp:sponge','Sponge','','A filter-feeder that pumps the water clean. It never moves.','@sponge'),
@@ -2545,8 +2615,13 @@ class Component extends DCLogic {
     // no control-scheme setting to hunt for: a pointing device gets mouse+keyboard, a phone gets touch
     // Default is always laptop controls. Touch is a deliberate choice in Settings, never a guess.
     if(this.opts.scheme==null||this.opts.scheme==='touch') this.opts.scheme='mouse';
-    if(this.opts.touch==null||this.opts.touch==='auto') this.opts.touch='off';
+    if(this.opts.touch==null) this.opts.touch='auto';
     try{ const o=localStorage.getItem('inkling1.opts'); if(o) Object.assign(this.opts,JSON.parse(o)); }catch(e){}
+    // ONE-TIME UPGRADE: touch controls used to default to OFF, so a phone showed no buttons at all
+    // until you went hunting in Settings. Anyone who never deliberately chose is moved to 'auto'.
+    if(!this.opts.touchAuto2){ this.opts.touchAuto2=1;
+      if(this.opts.touch==null||this.opts.touch==='off') this.opts.touch='auto';
+      try{ localStorage.setItem('inkling1.opts',JSON.stringify(this.opts)); }catch(e){} }
     this.uiScale=1; this._applyTextScale();
     this.codex={};
     this.ach={}; try{ const a=localStorage.getItem('inkling1.ach'); if(a) this.ach=JSON.parse(a)||{}; }catch(e){}
@@ -2664,7 +2739,15 @@ class Component extends DCLogic {
     this._beforeUnload=()=>{ try{ if(this.state.screen==='play'&&this.p&&!this.p.demo) this._doSave(); }catch(e){} };
     window.addEventListener('pagehide',this._beforeUnload);
     window.addEventListener('beforeunload',this._beforeUnload);
-    this._orient=()=>{ const port=window.innerHeight>window.innerWidth; if(!!this.state.portrait!==port) this.setState({portrait:port}); this._resizeCanvas(); };
+    this._orient=()=>{ const port=window.innerHeight>window.innerWidth;
+      if(!!this.state.portrait!==port){
+        this.setState({portrait:port});
+        // rotating a phone to landscape is the moment fullscreen matters. The browser only grants it
+        // from a real gesture, so offer a single tap rather than silently failing.
+        if(!port&&this._isTouchDevice()&&!this._fsEl()&&!this._fsPromptDone&&document.documentElement.requestFullscreen)
+          this.setState({fsPrompt:true});
+      }
+      this._resizeCanvas(); };
     window.addEventListener('resize',this._orient); this._orient();
     this._fsChange=()=>{ this.setState({fsV:(this.state.fsV||0)+1}); setTimeout(()=>this._resizeCanvas(),80); };
     document.addEventListener('fullscreenchange',this._fsChange);
@@ -3019,7 +3102,7 @@ class Component extends DCLogic {
     // sharks PATROL THE OPEN BLUE — homed near the reef's rim so the edge feels dangerous, with huge ranges
     this.preds.push({kind:'shark',x:this.WORLD.w*0.5,y:340,vx:0,vy:0,h:R()*6.28,st:'patrol',tx:0,ty:0,chaseT:0,ph:R()*6.28,confT:0,fedT:0,vic:null,home:{x:this.WORLD.w*0.5,y:300},range:2000,rim:true});
     this.preds.push({kind:'shark',x:this.WORLD.w-340,y:this.WORLD.h*0.5,vx:0,vy:0,h:R()*6.28,st:'patrol',tx:0,ty:0,chaseT:0,ph:R()*6.28,confT:0,fedT:0,vic:null,home:{x:this.WORLD.w-300,y:this.WORLD.h*0.5},range:2000,rim:true});
-    for(let i=0;i<5;i++) PD('cuda',inBiome(['sand flats','seagrass meadow']));
+    for(let i=0;i<6;i++) PD('cuda',inBiome(['sand flats','seagrass meadow'])); // one more silver arrow over the flats
     // free-roaming octopus (not the cave ones)
     for(let i=0;i<1;i++) PD('octo',inBiome(['rocky reef','kelp forest']));
     // cave occupants — tied to each cave's assigned occ; morays & cave-octopus are predators
@@ -3134,7 +3217,7 @@ class Component extends DCLogic {
     this.toast('You meet '+nm+' \u2014 a '+tp.word+' cuttlefish; it '+tp.line+'.');
     this.parts.push({x:n.x,y:n.y-24,vx:0,vy:-20,t:0,life:1.5,kind:'emote',txt:nm});
     this.rings.push({x:n.x,y:n.y,t:0,max:120,col:'150,235,225'});
-    this._note('neighbours','The reef\u2019s other minds','Cuttlefish are solitary, but each carries its own temper, and they recognise a familiar face. '+nm+' will remember you next time your paths cross.');
+    this._note('neighbours','The reef\u2019s other minds','Cuttlefish are solitary, but they are not uniform: individuals differ measurably in boldness, and there is evidence they tell one another apart. '+nm+' will know you next time your paths cross.');
     this._mem('met '+nm+' in the reef');
     return true; }
   _familyTree(srcLineage,includeLiving){
@@ -3630,7 +3713,7 @@ class Component extends DCLogic {
     if(was<0.3&&p.growth>=0.3){ this.toast('Juvenile now. The reef looks a little smaller.'); this.stageFx={t:0,label:'Juvenile'}; this._growFx('Juvenile'); }
     if(was<0.6&&p.growth>=0.6){ this.toast('half-grown, crab shells crack easier now'); this.stageFx={t:0,label:'Half-grown'}; this._growFx('Half-grown'); }
     if(was<0.85&&p.growth>=0.85){ this.toast('Mature. Old urges stir, perhaps a mate, perhaps a legacy.'); this.stageFx={t:0,label:'Mature'}; this._growFx('Mature');
-      this._note('adult','Grown','Cuttlefish reach adulthood in months, not years. They live fast and rarely see a second breeding season. Court another cuttlefish with signals, then return to a den.'); }
+      this._note('adult','Grown','Most cuttlefish reach adulthood in months and live a year or two in all, and in many species an adult breeds in a single season and does not survive to a second. Court another cuttlefish with signals, then return to a den.'); }
   }
   _growFx(label){ const p=this.p; if(!p||p.demo) return;
     this.rings.push({x:p.x,y:p.y,t:0,max:220,col:'150,235,225'});
@@ -3657,7 +3740,7 @@ class Component extends DCLogic {
         this._announceQuests(1800); } } }
   // ---- CONTEXTUAL FIRST-ENCOUNTER TIPS: guide a first-timer the moment they meet a new mechanic ----
   // On touch the player has never seen a keyboard key, so every prompt names the button they can see.
-  TOUCH_LBL={strike:'STRIKE',collect:'GRAB',camo:'CAMO',bury:'BURY',signal:'SIGNAL',ink:'INK',jet:'JET',swimtoggle:'JET',
+  TOUCH_LBL={strike:'STRIKE',collect:'GRAB',camo:'CAMO',bury:'BURY',signal:'SIGNAL',ink:'INK',jet:'SPRINT',swimtoggle:'SPRINT',
     build:'DIG',map:'MAP',quests:'TASKS',help:'MENU',inventory:'MENU',pause:'MENU',
     up:'\u25b2',down:'\u25bc',left:'\u25c0',right:'\u25b6'};
   _keyName(id){
@@ -3835,80 +3918,80 @@ class Component extends DCLogic {
   };
   // a short, punchy FUN FACT for EVERY entry — always shown, so no entry is ever bare
   HELP_FACT={
-    'basics:0':'A cuttlefish packs a whole life into about a year: hatch, grow, breed, die. You are living it in fast-forward.',
-    'basics:1':'A hatchling is smaller than a grain of rice; a mature Sepia can outweigh a house cat.',
-    'basics:2':'That W-shaped pupil is no flaw. It balances glare above and below so the bright reef never dazzles them.',
-    'basics:3':'Cuttlefish don\u2019t build homes so much as borrow them. A good crevice is prime reef real estate.',
-    'basics:4':'With copper-blue blood and three hearts, resting is not lazy. It is how they pay back an oxygen debt.',
-    'basics:5':'Three hearts is real biology; waking back up at your den afterward is pure game mercy.',
+    'basics:0':'Most cuttlefish pack a life into one to two years: hatch, grow, breed, die. You are living it in fast-forward.',
+    'basics:1':'A hatchling is the size of a pea. The giant Australian cuttlefish, largest of them all, can pass 10 kg.',
+    'basics:2':'That W-shaped pupil is no flaw. It is thought to even out bright water above and dim water below.',
+    'basics:3':'Cuttlefish don\u2019t build homes so much as borrow them. On a crowded reef a good crevice is worth defending.',
+    'basics:4':'Copper-based haemocyanin carries less oxygen than our haemoglobin, so hard swimming runs up a debt to be rested off.',
+    'basics:5':'Three hearts is real biology. Waking back up at your den afterwards is a liberty we took.',
     'hunting:0':'The two feeding tentacles fire in about 15 milliseconds, faster than you can blink.',
-    'hunting:1':'Buried with only its eyes showing, a cuttlefish is nearly invisible even from directly above.',
-    'hunting:2':'Cuttlefish blow jets of water to unbury prey, the same trick they use to bury themselves.',
+    'hunting:1':'Buried with only the eyes showing, a cuttlefish is very hard to pick out even from directly above.',
+    'hunting:2':'Cuttlefish blow jets of water to uncover buried prey — the same trick that buries the hunter.',
     'hunting:3':'A starving cuttlefish grows more slowly. Its development waits for the next meal.',
     'hunting:4':'Groupers and octopuses really do tail foragers to snatch flushed prey. Opportunism pays.',
-    'hiding:0':'One visual pigment, yet the sea’s finest disguise. They may read colour another way, and the skin senses light too.',
-    'hiding:1':'Seagrass meadows store more carbon per acre than rainforest, and hide a motionless cuttlefish beautifully.',
+    'hiding:0':'One visual pigment in the retina says colour-blind; the camouflage says otherwise. How they square it is still argued.',
+    'hiding:1':'Seagrass meadows bury carbon in their sediment faster per acre than forest soils, and hide a still cuttlefish beautifully.',
     'hiding:2':'They fluidize the sand with fin-ripples and water jets, sinking straight down in seconds.',
     'hiding:3':'The ink blob is shaped like the cuttlefish itself, a decoy called a pseudomorph, and it dulls a predator\u2019s smell.',
-    'hiding:4':'Real cuttlefish cannot light up the dark. This glow is a game power, not biology.',
+    'hiding:4':'Real cuttlefish carry no light organs and make no light of their own. This glow is a liberty we took.',
     'hiding:5':'A cuttlefish’s only real defence is not being seen. It cannot out-fight a determined hunter.',
     'dangers:0':'A cuttlefish’s best defence is not speed or armour. It is simply never being seen.',
     'dangers:1':'Cuttlefish sit mid-web: hunter of shrimp and crabs, hunted by fish, sharks, dolphins and seals.',
     'dangers:2':'A cornered cuttlefish will jab and jet. Ink first, courage second.',
-    'dangers:3':'Cleaning stations are real reef truces: predators queue politely and never eat the help.',
+    'dangers:3':'Cleaning stations are real reef truces: predators queue for service and mostly leave the cleaners alone.',
     'dangers:4':'Reef cuttlefish tire fast in open water. Copper-based blood cannot fuel a long sprint.',
     'home:0':'A cuttlefish defends a prime den fiercely. On a crowded reef, location is everything.',
     'home:1':'On bare sand they fan out a scrape beneath a shell or stone when no crevice is free.',
-    'home:2':'Octopuses wall their dens with stones and shells; your cuttlefish borrows the habit.',
-    'home:3':'Veined octopuses carry coconut halves as portable armour, rare tool use in an invertebrate.',
-    'home:4':'Females lay grape-like egg clusters, dye them dark with ink, and often die soon after.',
-    'home:5':'Cuttlefish hatch as drifting plankton, so every generation wakes on a brand-new reef.',
-    'home:6':'Cephalopods are born knowing almost nothing. They learn their reef by living it, just as you do.',
+    'home:2':'Octopuses wall their dens with stones and shells. A cuttlefish doing the same is a liberty we took.',
+    'home:3':'Veined octopuses carry coconut halves across bare sand to reassemble as shelter — often cited as tool use in an invertebrate.',
+    'home:4':'Females glue eggs in grape-like clusters and darken them with ink; in most species the female dies soon after.',
+    'home:5':'A cuttlefish hatches fully formed, a miniature of the adult, and hunts within days — with no parent left to show it anything.',
+    'home:6':'Cephalopods get no parenting at all. Whatever a cuttlefish knows of its reef, it learned alone.',
     'sp:shark':'Sharks find buried prey by its electric field, but a cuttlefish can freeze its own signal and vanish.',
-    'sp:grouper':'Groupers inhale prey whole in a sudden gulp, and some recruit moray eels to flush hidden fish.',
-    'sp:cuda':'A barracuda can burst to around 35 km/h, one of the fastest short-dash hunters on the reef.',
-    'sp:moray':'Morays see poorly but hold a second set of jaws in the throat that shoots forward to seize prey.',
-    'sp:octo':'An octopus has nine brains, one central and one in each arm, and blue blood like its cuttlefish cousin.',
-    'sp:shrimp':'Some reef shrimp snap a claw so fast it boils the water and stuns prey with the shockwave.',
-    'sp:crab':'A crab\u2019s armour beats a face-on strike, so cuttlefish flip it and hit the soft belly.',
+    'sp:grouper':'Groupers inhale prey in a sudden gulp, and some have been filmed signalling to moray eels to flush hidden fish.',
+    'sp:cuda':'A barracuda can burst to somewhere around 35 km/h — among the fastest short dashes on the reef.',
+    'sp:moray':'Morays rely little on sight, and carry a second set of jaws in the throat that lunges forward to drag prey down.',
+    'sp:octo':'Around two-thirds of an octopus\u2019s neurons sit in its arms, not its head — and its blood runs blue, like its cuttlefish cousin\u2019s.',
+    'sp:shrimp':'A pistol shrimp snaps its claw so fast the water tears open behind it, with a bang that can stun small prey.',
+    'sp:crab':'A crab\u2019s shell turns a face-on strike, so cuttlefish work the joints and the soft underside instead.',
     'sp:minnow':'Plankton-pickers swarm thickest at night, when the reef\u2019s tiniest drifters rise toward the surface.',
-    'sp:parrot':'Parrotfish grind coral into sand. One big one can make hundreds of pounds of white beach a year.',
+    'sp:parrot':'Parrotfish rasp algae from coral rock and pass the rock as sand — a big one, up to hundreds of kilos a year.',
     'sp:squirrel':'Those huge eyes are built for the dark: squirrelfish hide in crevices all day and forage at night.',
-    'sp:cuttle':'Cuttlefish recognise individuals and remember who they have met, rare memory for a solitary animal.',
-    'sp:squid':'An alarmed squid flashes dark panic-bands down the shoal, a wave of warning through the water.',
+    'sp:cuttle':'Cuttlefish appear to tell individuals apart and remember past encounters — unusual for so solitary an animal.',
+    'sp:squid':'Squid signal to one another with dark skin bands, and alarm can run through a shoal in a wave.',
     'sp:turtle':'A grazing turtle stirs up shrimp and crabs. Clever hunters follow it for the scraps.',
     'sp:ray':'Rays hunt buried clams by sensing their faint electric heartbeat through the sand.',
-    'sp:wrasse':'Cleaner wrasses learn their regulars\u2019 faces and give trusted clients their best, quickest service.',
-    'sp:lobster':'Spiny lobsters migrate single-file in long conga-lines across the seabed each autumn.',
+    'sp:wrasse':'Cleaner wrasses recognise repeat clients and treat them better than passing strangers.',
+    'sp:lobster':'Caribbean spiny lobsters travel single file in long queues across open seabed, each holding the one ahead.',
     'sp:anemone':'A clownfish coats itself in mucus to live unstung among tentacles that would kill any other fish.',
-    'sp:urchin':'When urchins disappear, algae smothers the coral. They are the reef’s tireless lawnmowers.',
-    'sp:star':'A sea star can push its stomach out through its mouth to digest prey outside its own body.',
-    'sp:cuke':'A threatened sea cucumber fires sticky tubules, and some expel their own guts then regrow them.',
+    'sp:urchin':'Where grazing urchins were wiped out, algae overgrew the coral. They are the reef’s lawnmowers.',
+    'sp:star':'Many sea stars push the stomach out through the mouth and digest prey outside the body.',
+    'sp:cuke':'Handled roughly, some sea cucumbers fire sticky tubules; a few eject their own gut and regrow it.',
     'sp:conch':'A conch does not crawl. It pole-vaults, planting a clawed foot and lurching forward.',
     'sp:sponge':'Sponges have no organs at all, yet pump thousands of litres of water a day to filter their food.',
-    'sp:jelly':'Jellyfish are 95% water and have drifted the seas for over 500 million years, older than trees.',
+    'sp:jelly':'A jellyfish is about 95% water, and the lineage has drifted the seas for over 500 million years.',
     'sp:damsel':'A palm-sized damselfish will charge a diver ten thousand times its size to defend its algae plot.',
-    'dangers:5':'A cuttlefish’s own saliva is venomous. It injects crabs to subdue them before eating.',
-    'dangers:6':'Bleached coral is not dead, it is starving. If the heat passes in time, the colour floods back.'
+    'dangers:5':'A sting keeps burning after contact because the stinging cells left on the skin go on firing.',
+    'dangers:6':'Bleached coral is not dead but starving. If the heat passes soon enough, the algae return and so does the colour.'
   };
   HELP_MORE={
     'basics:1':'Cuttlefish grow fast and live hard, most reef species live barely a year to two, growing from a rice-grain hatchling to a full adult in months, breeding once, and dying soon after. That short, blazing life is why the game runs generation to generation.',
     'basics:2':'They are most active at dawn and dusk, when the changing light hides their approach. A cuttlefish\u2019s W-shaped pupil handles glare beautifully, letting it hunt across wildly different brightness.',
     'basics:4':'A cuttlefish\u2019s blood is blue-green, it carries oxygen with copper-based haemocyanin, not iron. It\u2019s less efficient than our red blood, which is why they need three hearts and can\u2019t sustain hard swimming for long.',
-    'basics:5':'The three hearts are real: two branchial hearts pump blood through the gills, and one systemic heart drives it round the body. The systemic heart actually pauses each time the animal jets, one reason jetting is so tiring.',
+    'basics:5':'The three hearts are real: two branchial hearts push blood through the gills, one systemic heart drives it round the body. In squid the systemic heart has been recorded stalling during hard jetting, part of why sustained jet-swimming costs a cephalopod so much.',
     'hunting:0':'The two long feeding tentacles fire in about 15 milliseconds, among the fastest strikes in the sea. They stay coiled in pouches beneath the eyes until the instant of the strike, then snap out to seize prey with clubbed, sucker-lined tips.',
     'hunting:1':'Before an ambush a cuttlefish often throbs shifting dark bands across its skin, the \u201cpassing-cloud\u201d display, which may mesmerize or startle prey into freezing. Buried in sand with only the eyes showing, it becomes almost invisible.',
     'hunting:2':'Rays and other foragers blow jets of water into the sand to expose buried clams and worms; smart reef hunters shadow them to snap up whatever bolts. This kind of following is well documented among octopuses and groupers.',
-    'hiding:0':'Cuttlefish have a single visual pigment, so by the usual test they should be colour-blind, yet they produce the sea\u2019s finest colour camouflage. One leading idea is that their oddly shaped pupil and strongly aberrant lens smear colours to different focal depths, so the animal could read hue by focusing rather than by comparing cones. Their skin also carries light-sensitive proteins. It holds millions of chromatophores (pigment sacs squeezed by muscle) over reflective iridophores and leucophores, all controlled directly by the brain in a fraction of a second.',
+    'hiding:0':'A cuttlefish retina holds one visual pigment, so on the usual test for colour vision it should be colour-blind — and yet it matches colours it supposedly cannot see. The question is genuinely open. One proposed answer is that the W-shaped pupil and a deliberately blurry lens throw different wavelengths to different focal depths, so hue could be read by focusing rather than by comparing cone types; that is a hypothesis, not a settled result. Their skin also carries opsins, light-sensitive proteins of the kind eyes use, though what the skin does with that information is unclear. What is not in doubt is the machinery: millions of chromatophores — pigment sacs pulled open by muscle — layered over reflective iridophores and white leucophores, driven straight from the brain in a fraction of a second.',
     'hiding:2':'They don\u2019t dig so much as ripple the fin and jet water to fluidize the sand, sinking straight down, then rake grains over the mantle. Only the eyes and a breathing gap remain, and even those can be disguised.',
     'hiding:3':'Ink is expelled from the funnel, not the tail, and mixed with mucus so it hangs in a blob roughly the animal\u2019s size, a \u201cpseudomorph\u201d decoy. The ink also contains compounds that dull a predator\u2019s sense of smell.',
     'hiding:5':'Against a committed predator a cuttlefish relies on camouflage, ink and a fast jet escape, not confrontation. A larger hunter presses the attack until it loses the trail or a better meal drifts past.',
     'dangers:1':'Cuttlefish sit in the middle of the food web: hunters of shrimp and crabs, hunted by fish, sharks, dolphins and seals. Their defence is not speed or armour but disappearance, and knowing exactly who is dangerous when.',
-    'sp:shark':'Sharks sense the tiny electric fields of hidden animals through the ampullae of Lorenzini, so burying alone won\u2019t fool one. Cuttlefish can actually freeze their own bioelectric signature mid-hunt to hide from sharks, a trick discovered only recently.',
-    'sp:octo':'Octopuses are cousins of cuttlefish, both cephalopods, and among the most intelligent invertebrates, opening jars and using tools. A brooding mother octopus stops eating to guard her eggs and dies as they hatch.',
-    'sp:crab':'A crab\u2019s shell defeats a face-on strike, so cuttlefish flip them or attack the soft joints, sometimes injecting venomous saliva to subdue them. The reward is worth the effort: crabs are dense, rich food.',
+    'sp:shark':'Sharks pick up the faint electric fields of hidden animals through the ampullae of Lorenzini, so burying alone will not fool one. In lab work, cuttlefish met with a shark-like field froze and clamped down, covering the funnel and holding still, which measurably cut the electric signal they gave off.',
+    'sp:octo':'Octopuses are cephalopods like cuttlefish, and among the most capable invertebrates tested — working latches, and, in the veined octopus, carrying coconut shells to reassemble as shelter. A brooding female stops feeding to guard and fan her eggs, and dies around the time they hatch.',
+    'sp:crab':'A crab\u2019s shell turns a face-on strike, so cuttlefish manoeuvre it and work the joints and underside. Cephalopod saliva carries toxins that help subdue struggling prey. The reward is worth the trouble: a crab is dense, rich food.',
     'sp:damsel':'Farmer damselfish weed unwanted seaweeds and even cultivate a favoured red alga that grows almost nowhere else, one of the few true farming relationships in the animal kingdom. They defend the plot so fiercely they will bite divers.',
-    'dangers:5':'Cnidarians (jellyfish, anemones, the crown-of-thorns\u2019 relatives) fire microscopic harpoons called nematocysts, each a coiled thread under enormous pressure. They keep injecting toxin after contact, which is why a sting burns on long after you pull away.',
+    'dangers:5':'Cnidarians — jellyfish and anemones — fire microscopic harpoons called nematocysts, each a coiled thread held under pressure and fired in a fraction of a millisecond. Cells left on the skin go on firing, which is why a sting burns long after you pull away. Urchin spines and a ray\u2019s barb work differently: no harpoons, just a puncture that delivers venom directly.',
     'dangers:6':'Coral is an animal housing photosynthetic algae (zooxanthellae) that feed and colour it. Heat or pollution makes the coral expel them, leaving the white skeleton visible through clear tissue, bleaching. It can recover if conditions ease, but prolonged bleaching starves the colony to death.'
   };
   // INSTINCTS ARE RECIPES: each awakens only once you've gathered a COMBINATION of field notes across sections.
@@ -3983,10 +4066,10 @@ class Component extends DCLogic {
       ['bury','Ambush from the sand'],['lurefeed','The worm-lure'],['hypno','The passing-cloud'],
       ['clam','Reading the sand'],['follow','Hunting in a wake'],['fight','Standing your ground'],['cocoon','The mucus cocoon']]},
     {g:'Concealment', col:'#b48ad9', items:[
-      ['camo','Living pixels'],['ink','The false body'],['burst','A light in the dark']]},
+      ['camo','The skin that answers'],['ink','The false body'],['burst','A light in the dark']]},
     {g:'A Home', col:'#e0b060', items:[
       ['den','A door in the reef'],['digown','A home you make'],['claim','A hollow taken'],['caveshelter','The reef\u2019s best shelter'],
-      ['build','Home improvement'],['stones','Mason of the reef'],['plants','Lining the home'],['decor','A collector\u2019s den'],['eggs','Sepia grapes']]},
+      ['build','Home improvement'],['stones','Mason of the reef'],['plants','Lining the home'],['decor','A collector\u2019s den'],['eggs','Sea grapes']]},
     {g:'Neighbours', col:'#7fc98a', items:[
       ['neighbours','The reef\u2019s other minds'],['clean','The cleaning bargain'],['adult','A life come of age'],
       ['conchcarry','A shell in the arms'],['starcarry','A star in the arms']]},
@@ -4786,7 +4869,7 @@ class Component extends DCLogic {
     if(!p.camo&&p.camoM<20){ this.toast('camouflage spent'); return; }
     p.camo=!p.camo; if(p.camo) this._tutHit&&this._tutHit('camo');
     if(p.camo) this._tutHit('camo');
-    if(p.camo) this._note('camo','Living pixels','A cuttlefish\u2019s skin is packed with chromatophores, pigment sacs opened and shut by tiny muscles, a couple of hundred in every square millimetre. It can match sand, coral, even a passing pattern, in under a second. Holding a match takes focus: your camouflage meter drains while active.');
+    if(p.camo) this._note('camo','The skin that answers','A cuttlefish\u2019s skin is packed with chromatophores — pigment sacs pulled open by rings of muscle — in the order of a couple of hundred per square millimetre, over reflective cells beneath. It can settle onto a new background in well under a second. Holding a match takes effort here: your camouflage meter drains while active.');
   }
   toggleBury(){ const p=this.p;
     if(p.buried){ p.buried=false; return; }
@@ -4794,7 +4877,7 @@ class Component extends DCLogic {
     // any visible loose-sand patch (the sparkle ring) is buryable — biome no longer matters
     if(this.looseSandAt(p.x,p.y)||this.onSand(p.x,p.y)){ p.buried=true; p.camo=false; p.vx*=0.3; p.vy*=0.3; this._tutHit('bury'); this._sfx('bury',{vol:0.8});
       for(let i=0;i<14;i++){ const a=Math.random()*6.28; this.parts.push({x:p.x+Math.cos(a)*30,y:p.y+Math.sin(a)*20,vx:Math.cos(a)*40,vy:Math.sin(a)*40,t:0,life:0.7,kind:'sand'}); }
-      this._note('bury','Yes, they really do this','Cuttlefish rock their bodies and blow water through the sand to sink in, leaving only their eyes exposed. Buried, they ambush what wanders past and drop out of sight almost completely. A reef hunts by eye, and there is suddenly nothing to see.');
+      this._note('bury','Sinking out of sight','Cuttlefish rock their bodies and blow water through the sand to sink in, leaving only their eyes exposed. Buried, they ambush what wanders past and drop out of sight almost completely. A reef hunts by eye, and there is suddenly nothing to see.');
     } else this.toast('look for pale, sparkling sand');
   }
   doJet(){ const p=this.p; if(p.buried||p.jetCd>0||p.stam<26) return;
@@ -4863,7 +4946,7 @@ class Component extends DCLogic {
         for(let i=0;i<10;i++){ const a=Math.atan2(p.y-c.y,p.x-c.x)+(Math.random()-0.5)*1.2; const r=10+Math.random()*40;
           this.parts.push({x:c.x+Math.cos(a)*r,y:c.y+Math.sin(a)*r,vx:Math.cos(a)*20,vy:Math.sin(a)*20,t:0,life:1.4,kind:'tubule'}); }
         this.notify('stuck! the cucumber gums you up','cuke');
-        if(!this.notesShown['cukepoke']) this._note('cukepoke','Do not poke the cucumber','Prod a sea cucumber and it fires sticky white threads called Cuvierian tubules, which tangle and gum up whatever bothered it. Pushed harder, some expel their own internal organs outright and grow a fresh set over the following weeks. For a few seconds you\u2019ll swim sluggish and sticky. Best left alone.');
+        if(!this.notesShown['cukepoke']) this._note('cukepoke','What the cucumber does back','Prod the wrong sea cucumber and it fires sticky white threads called Cuvierian tubules — a defence some species have and others lack — which tangle and gum up whatever bothered it. Pushed harder, some eject their own gut outright and grow a fresh set over the following weeks. For a few seconds you\u2019ll swim sluggish and sticky. Best left alone.');
         p.strike={t:0,target:null,hit:true,fromBury:wasBuried}; return; } }
     }
     if(!best){ for(const g of this.preds){ const d=Math.hypot(g.x-p.x,g.y-p.y);
@@ -4942,7 +5025,7 @@ class Component extends DCLogic {
       if(near){ near.carried=true; near.trail=null; this._sfx('bubble',{vol:0.4,rate:0.8});
         this.parts.push({x:near.x,y:near.y-10,vx:0,vy:-18,t:0,life:1,kind:'emote',txt:'picked up'});
         this.toast('you gather the conch into your arms, heavy, and it slows you');
-        this._note('conchcarry','A shell in the arms','Cuttlefish have been filmed carrying coconut halves and shells for later shelter. A live conch is heavier than it looks, carry it home, or set it down as a decoy.');
+        this._note('conchcarry','A shell in the arms','It is octopuses that have been filmed carrying coconut halves and shells to use later as shelter; your cuttlefish borrowing the habit is a liberty we took. A live conch is heavier than it looks: carry it home, or set it down as a decoy.');
         return; } }
     // small sea star pick-up-and-carry (crown-of-thorns is too venomous to hold)
     if(this.stars){ const heldS=this.stars.find(s2=>s2.carried);
@@ -4979,7 +5062,7 @@ class Component extends DCLogic {
         this.parts.push({x:sh.x,y:sh.y-6,vx:0,vy:-24,t:0,life:1.4,kind:'emote',txt:'+ '+dm.label+' ('+dm.tierLabel+')'});
         this.toast('a '+dm.label+' — a '+dm.tierLabel+' keepsake for your den'); this._mem('found a '+dm.label);
         this._sfx('bubble',{vol:0.42,rate:1.15}); this._stat('seaglass');
-        this._note('shells','A collector\u2019s eye','Empty shells are the reef\u2019s heirlooms, a cowrie\u2019s glassy dome, a nautilus\u2019s chambered spiral. Cuttlefish and octopuses gather the finest to line and adorn their dens.');
+        this._note('shells','A collector\u2019s eye','Empty shells are the reef\u2019s heirlooms, a cowrie\u2019s glassy dome, a nautilus\u2019s chambered spiral. Octopuses really do gather the finest and pile them at the den mouth; your cuttlefish keeping them is a liberty we took.');
         return; }
       if(sh.coconut){ sh.got=true; p.trophies=p.trophies||[]; p.trophies.push('coconut'); this._logFind('coconut',sh.x,sh.y);
         this.parts.push({x:sh.x,y:sh.y-6,vx:0,vy:-24,t:0,life:1.4,kind:'emote',txt:'+ coconut half (very rare)'});
@@ -4996,7 +5079,7 @@ class Component extends DCLogic {
     if(this.stonesC) for(const st of this.stonesC){ if(!st.got&&Math.hypot(st.x-p.x,st.y-p.y)<RANGE){ if((p.stones||0)>=this.CAP.stones){ this.toast('arms full'); return; } st.got=true; p.stones=(p.stones||0)+1; this._tutHit('collect'); this._tutHit('stone');
       this.parts.push({x:st.x,y:st.y-6,vx:0,vy:-24,t:0,life:1,kind:'emote',txt:'+ stone'});
       this.toast('a smooth stone, for building ('+p.stones+'/'+this.CAP.stones+')');
-      this._note('stones','Mason of the reef','Cuttlefish and octopuses drag stones to wall up the mouth of a den, a doorway they can pull half-shut against the night.'); return; } }
+      this._note('stones','Mason of the reef','Octopuses drag stones to wall up a den mouth, a doorway they can pull half-shut against the night. A cuttlefish doing the same is a liberty we took — but the stones hold, and the walls stand.'); return; } }
     // weed out overgrowing algae — tear a clump free with your arms so the coral can breathe
     if(this.algae) for(const al of this.algae){ if(Math.hypot(al.x-p.x,al.y-p.y)<RANGE*0.8){
       if(al.tended){ // that was somebody's GARDEN
@@ -5019,7 +5102,7 @@ class Component extends DCLogic {
       d.cut=this.tg; p.plants=(p.plants||0)+1; this._tutHit('collect'); this._tutHit('weed');
       for(let i=0;i<5;i++){const a=Math.random()*6.28; this.parts.push({x:d.x,y:d.y,vx:Math.cos(a)*30,vy:Math.sin(a)*30,t:0,life:0.5,kind:'sand'});}
       this.toast('you tuck a '+(d.t==='kelp'?'kelp blade':'ribbon of seagrass')+' under an arm ('+p.plants+'/'+this.CAP.plants+')');
-      this._note('plants','Lining the home','Cuttlefish and octopuses gather blades of weed and shell to line and camouflage their dens, soft bedding and a broken outline that fools passing eyes. You can only carry a few loose blades at once.');
+      this._note('plants','Lining the home','Weed laid over a den mouth breaks up its outline, which is the whole point: an entrance that reads as reef rather than as doorway. Octopuses are the documented decorators; your cuttlefish borrowing the habit is a liberty we took. You can only carry a few loose blades at once.');
       return; } }
     // cleaning station — the wrasses sleep at night; the station keeps daylight hours
     for(const st of this.stations){ if(Math.hypot(st.x-p.x,st.y-p.y)<120){
@@ -5046,7 +5129,7 @@ class Component extends DCLogic {
       if(heal>0&&p.hp<p.hpMax){ p.hp=Math.min(p.hpMax,p.hp+heal); }
       this.parts.push({x:p.x,y:p.y-30,vx:0,vy:-22,t:0,life:1,kind:'emote',txt:reg>=3?'✨ welcome back!':'✨ clean!'});
       for(let i=0;i<8;i++){ const aa=Math.random()*6.28; this.parts.push({x:p.x+(Math.random()-0.5)*30,y:p.y+(Math.random()-0.5)*30,vx:Math.cos(aa)*30,vy:Math.sin(aa)*30-10,t:0,life:0.7,kind:'bubble'}); }
-      this._note('clean','The cleaning bargain','Cleaning stations are real reef institutions: cleaner wrasses eat parasites and dead skin off visiting animals, and even predators wait in line and hold truce. Everyone leaves healthier. Come often and the wrasses learn your face. They greet a regular and give their best.');
+      this._note('clean','The cleaning bargain','Cleaning stations are real reef institutions: cleaner wrasses eat parasites and dead skin off visiting animals, and even predators queue for the service. Everyone leaves healthier. Wrasses do appear to recognise repeat clients and treat them better than passing strangers, so come often.');
       return; } }
     // den — C always ENTERS; building/improving happens inside (no more enter-vs-build ambiguity)
     for(const d of this.dens){ if(Math.hypot(d.x-p.x,d.y-p.y)<100){
@@ -5095,13 +5178,13 @@ class Component extends DCLogic {
     this._doSave(); this.toast(d.home?'home \u00b7 saved':'a borrowed hollow');
     p.vx=p.vy=0; p.buried=false; p.camo=false;
     if(mateHere) this.toast('your mate waits, lay the clutch');
-    this._note('den','A door in the reef','A cuttlefish\u2019s den is a crevice under rock or coral, its mouth often walled with shell. One den is HOME, build it, brood in it. Others are refuges: rest a while, but a stranger\u2019s hollow never heals like your own.');
+    this._note('den','A door in the reef','A cuttlefish\u2019s den is simply a crevice under rock or coral — found, not made, and defended while it lasts. One den is HOME: build it up, brood in it. Others are refuges. Rest a while, but a stranger\u2019s hollow never heals like your own.');
   }
   _enterCave(c){ const p=this.p;
     this.inDen={den:c,cave:true,t:0,rest:false,fade:0,refuge:true};
     this.toast(c.claimed?'your cave':'shelter');
     p.vx=p.vy=0; p.buried=false; p.camo=false;
-    this._note('caveshelter','Real estate, reef edition','A cave is the reef\u2019s best shelter, which is why one rarely stays empty. Rest here to heal out of sight; a big cave heals like a built den. Drive out a moray and the deed is yours\u2026 for a while.');
+    this._note('caveshelter','Nothing stays empty long','A cave is the reef\u2019s best shelter, which is why one rarely stays empty. Rest here to heal out of sight; a big cave heals like a built den. Drive out a moray and the hollow is yours, for as long as you can hold it.');
   }
   _exitDen(){ const d=this.inDen&&this.inDen.den; this.inDen=null;
     if(d){ this.p.x=d.x+70; this.p.y=d.y+60; } this._doSave(); }
@@ -5131,7 +5214,7 @@ class Component extends DCLogic {
         p.mate.mate=false; p.mate.following=false; p.mate.spent=true; p.mate=null; p.mateStage='guard'; }
       const layer = p.sex==='F' ? 'you fasten' : 'your mate fastens';
       this.toast(layer+' '+p.eggClutch.eggs+' eggs among the stones — small moons, each one a maybe');
-      this._note('eggs','Sepia grapes','The female attaches clusters of ink-stained eggs to sheltered rock and fans fresh water over them so they can breathe. Not every egg makes it: some spoil in stale water, some are eaten, some simply fail. Guard them, fan them, and count what survives.');
+      this._note('eggs','Sea grapes','The female glues clusters of ink-stained eggs under sheltered rock, each in a tough capsule that does the protecting for her, and in most species she leaves them to it and does not live much longer. Standing guard over the clutch is a liberty we took. Not every egg makes it: some spoil, some are eaten, some simply fail. Guard them, fan them, and count what survives.');
       return; }
     // BUILD RECIPES — improvements, each a different protection; brace uses driftwood
     if(which==='camo'||which==='wall'||which==='lining'||which==='brace'){
@@ -5150,7 +5233,7 @@ class Component extends DCLogic {
       den.level=b.camo+b.wall+b.lining+(b.brace||0);
       const tierNote=b[which]>=RC.max?'complete':b[which]>=3?'reinforced':'built';
       this.toast('\u2726 '+RC.name+' tier '+b[which]+'/'+RC.max+' ('+tierNote+') — '+RC.fx);
-      this._note('build','Home improvement','Cuttlefish and octopuses genuinely renovate: hauling shells, stones, weed and driftwood to their dens. Weed HIDES the den, stone WALLS keep egg-raiders out, shell LINING makes rest and brooding better, and a driftwood BRACE keeps the roof from silting shut.');
+      this._note('build','Home improvement','Octopuses genuinely renovate, hauling shells, stones and debris to their dens; a cuttlefish takes a crevice as it finds it, so the building here is a liberty we took. In game: weed HIDES the mouth, stone WALLS make it harder to force, shell LINING makes rest and brooding better, a driftwood BRACE keeps the roof from silting shut.');
       return; }
     // TROPHY DECOR — mount a rare keepsake (spiral shell / lobster molt) on the den wall
     if(which==='decor'){
@@ -5195,7 +5278,7 @@ class Component extends DCLogic {
       for(const q of this.prey){ if(Math.hypot(q.x-p.x,q.y-p.y)<lureR&&q.fleeT<=0){ q.lure=p; q.lureT=4; lured++; } }
       if(lured) this.toast('your arm-tip wriggles, prey drift in');
       this._tutHit('bait');
-      this._note('lurefeed','The twitch in the sand','Buried hunters twitch an arm-tip like a worm to draw prey close, aggressive mimicry. Wait for the drift, then strike.');
+      this._note('lurefeed','The twitch in the sand','Waving an arm to pass for something small and edible — aggressive mimicry — turns up across the sea, in anglerfish, in some cephalopods. Wait for the drift, then strike.');
       return; }
     p.sigCd=1.6;
     const night=this._dayF()<0.4;
@@ -5210,7 +5293,7 @@ class Component extends DCLogic {
       if(answered){ this._sfx&&this._sfx('note',{vol:0.3,rate:1.5});
         if(!this._jellyAnswered){ this._jellyAnswered=1;
           this.toast('you blink, and the jellyfish answer in light');
-          this._note('jellylight','Answering in light','Many jellies are bioluminescent, and a flash in the water sets neighbouring bells firing in turn, a chain of cold blue-green light with no meaning anyone has decoded. Signal near a bloom and watch it travel.'); } } }
+          this._note('jellylight','Answering in light','Many jellies are bioluminescent, and a disturbance can set neighbouring bells firing in turn. The usual explanation is defensive — startle a predator, or light it up for something larger — though what any one flash means is guesswork. Answering a bloom in kind is a liberty we took. Signal near one and watch the light travel.'); } } }
     // HYPNOSIS: a cuttlefish can flash rushing dark bands down its arms to MESMERIZE prey within reach.
     // It must be SUSTAINED: keep pressing signal in a steady rhythm — pause too long or jet and the spell breaks.
     { let hq=null,hd=190;
@@ -5272,7 +5355,7 @@ class Component extends DCLogic {
       this._courtSignal(n); return; }
     if(first){ this.toast('You meet '+nm+' \u2014 a '+tp.word+' cuttlefish; it '+tp.line+'.');
       this._mem('met '+nm+' in the reef');
-      this._note('neighbours','The reef\u2019s other minds','Cuttlefish are solitary, but each carries its own temper, and they recognise a familiar face. '+nm+' will remember you next time your paths cross, and warm to you the more you meet.');
+      this._note('neighbours','The reef\u2019s other minds','Cuttlefish are solitary, but they are not uniform: individuals differ measurably in boldness, and there is evidence they tell one another apart. '+nm+' will know you next time your paths cross — the warming to you is a liberty we took.');
       return; }
     if(!deepen){ // a warm re-greet that does NOT advance the bond — closeness has to be earned over time together
       this.parts.push({x:n.x,y:n.y-30,vx:0,vy:-16,t:0,life:1.0,kind:'emote',txt:'\u266a'});
@@ -5289,7 +5372,7 @@ class Component extends DCLogic {
     else { // close companion — stays long, watches your back
       n._closeBond=true; this._ach('closebond'); n.followT=Math.max(n.followT,60);
       this.parts.push({x:n.x,y:n.y-30,vx:0,vy:-16,t:0,life:1.3,kind:'emote',txt:'\u2665'});
-      if(!this.notesShown['bondcuttle']) this._note('bondcuttle','A companion of the reef','Meet the same cuttlefish often enough and a real rapport forms. It stays close, hunts with you, and flares a warning the instant it sees danger. Solitary by nature, but not strangers to a familiar neighbour.');
+      if(!this.notesShown['bondcuttle']) this._note('bondcuttle','A companion of the reef','Wild cuttlefish keep their own company; a companion who swims at your side and calls out danger is a liberty we took, not something the animal does. What is real is the groundwork: they recognise individuals, and a neighbour met often is not a stranger.');
       this.toast(nm+' stays close now \u2014 a companion who watches your back'); }
   }
   _courtSignal(n){ const p=this.p;
@@ -5297,7 +5380,7 @@ class Component extends DCLogic {
       this.toast(p._finalCourt==='done'?'your mate is ready \u2014 lead them into your den to lay':'your mate is already at your side \u2014 lead them home to your den'); return; }
     if(p.mate&&p.mate!==n){ this.toast('you are already courting another'); return; }
     // basic hello note the first time
-    this._note('signal','Skin speech','Cuttlefish converse in moving skin patterns, courtship stripes, warning zebra flashes, even one display on the side facing a mate and a different one facing a rival at the same time. (Real cuttlefish make no light of their own; the glow you cast at night is ours, not theirs.)');
+    this._note('signal','Skin speech','Cuttlefish converse in moving skin patterns: courtship stripes, warning zebra flashes. Male mourning cuttlefish have been recorded going further, holding a courtship display on the side facing a female and a female-like pattern on the side facing a rival, at the same time. (Real cuttlefish make no light of their own; the glow you cast at night is ours, not theirs.)');
     if(p.growth<0.85){ this.toast('not yet grown to breed'); return; }
     if((n._courtCd||0)>this.tg){ this.toast('it keeps its distance, the moment has passed for now'); return; }
     this._note('court','The long courtship','Cuttlefish courtship is a patient conversation of displays, the male streams a rippling \u201cpassing-cloud\u201d and flares zebra bands to prove his vigor, reading her answer before daring closer. Rivals lurk; a sudden zebra flash can warn them off.');
@@ -5324,7 +5407,15 @@ class Component extends DCLogic {
       return matchMedia('(pointer:coarse)').matches || ('ontouchstart' in window) || navigator.maxTouchPoints>0;
     }catch(e){ return ('ontouchstart' in window)||navigator.maxTouchPoints>0; }
   }
-  _mobileOn(){ return ((this.opts&&this.opts.touch)||'off')==='on'; } // opt-in only
+  // 'auto' (the default) turns the on-screen controls on for real touch devices and leaves laptops alone.
+  // 'on'/'off' are the player's explicit override in Settings.
+  _mobileOn(){ const m=(this.opts&&this.opts.touch)||'auto';
+    if(m==='on') return true; if(m==='off') return false;
+    if(this._touchDev==null) this._touchDev=this._isTouchDevice();
+    return this._touchDev; }
+  // the world is drawn smaller on a phone screen, so zoom the camera in — the cuttlefish reads too
+  // small at laptop zoom on a 6" display
+  _Z(){ return this._mobileOn()?2.18:1.62; }
   refJoyZone=(el)=>{ this._joyZone=el; };
   refJoyBase=(el)=>{ this._joyBase=el; };
   refJoyKnob=(el)=>{ this._joyKnob=el; };
@@ -5374,10 +5465,20 @@ class Component extends DCLogic {
     this._digHeld=true;
     if(!this.digSite) this.doBuildDen(); };
   _digUp=(e)=>{ this._digHeld=false; };
-  _jetDown=(e)=>{ e.preventDefault(); if(this.inDen){ this._denAction('home'); return; }
-    this.doJet(); if(this._jetInt) clearInterval(this._jetInt);
-    this._jetInt=setInterval(()=>{ if(this.state.screen==='play'&&this.p&&!this.p.demo&&!this.inDen) this.doJet(); },90); };
-  _jetUp=(e)=>{ if(this._jetInt){ clearInterval(this._jetInt); this._jetInt=null; } };
+  // STICKY SPRINT (the mobile convention: a toggle, not a button you must keep hammering).
+  // One tap turns jet-propulsion on and it STAYS on; tap again to settle back to fin-swim.
+  // Stamina only drains while you're actually steering, so idling in jet mode costs nothing,
+  // and running dry drops you back to fin-swim on its own.
+  _jetDown=(e)=>{ if(e&&e.preventDefault) e.preventDefault();
+    if(this.inDen){ this._denAction('home'); return; }
+    const p=this.p; if(!p||p.demo||this.state.screen!=='play') return;
+    if(p.swimMode!=='jet'){
+      if(p.stam<12){ this.toast('too winded to sprint'); return; }
+      p.swimMode='jet'; this._tutHit('swim'); this._tutHit('jet');
+      this.toast('sprint on · fast but it burns air');
+    } else { p.swimMode='fin'; this.toast('fin-swim: steady'); }
+    this.setState({qv:this.state.qv+1}); };
+  _jetUp=(e)=>{};
   toast(txt){ if(!this.toasts) this.toasts=[]; if(!txt) return;
     // the same line twice in a row is noise, not information
     if(this.toasts.some(t=>t.txt===txt&&t.t<2.2)) return;
@@ -5611,7 +5712,7 @@ class Component extends DCLogic {
           else if(this.clams&&this.clams.length>3&&Math.random()<0.4){ this.clams.splice((Math.random()*this.clams.length)|0,1); }
           for(const o of this.decor){ if((o.t==='coral'||o.t==='bommie')&&o.bleach) o.bleach=Math.min(1,o.bleach+0.03); }
           if(!this._acidWarned){ this._acidWarned=true; this.toast('the water turns sour');
-            this._note('acid','The souring sea','As the ocean absorbs more carbon, its pH falls and the water turns acidic. That dissolves the building blocks of shells and coral skeletons, urchins, clams and young coral suffer first, and eggs grow fragile. It is one of the quietest, gravest threats a reef faces.'); } }
+            this._note('acid','The souring sea','As the ocean absorbs more carbon dioxide its pH falls — still alkaline, but less so, which is why the word is acidification rather than acid. Carbonate grows scarcer, so shells and young coral skeletons are harder to build and easier to dissolve; urchins, clams and coral spat suffer first, and eggs grow fragile. It is one of the quietest, gravest threats a reef faces.'); } }
       } else { this.p._acidStress=0; if((this.reefPH==null?8.1:this.reefPH)>8.02) this._acidWarned=false; } }
     // ---- CARCASS: while it lasts, it keeps drawing more sharks and other scavengers — scaring one off never "fixes" it ----
     if(this._carcass){ const cc=this._carcass; cc.t+=dt;
@@ -5868,6 +5969,9 @@ class Component extends DCLogic {
         const info=(err&&(err.stack||err.message))||(''+err);
         console.error('cf render crash:',info);
         window.__cfRenderErr=info;
+        // surface it on screen too: a silent draw failure used to look like a hard freeze
+        this._renderErrMsg='render: '+info;
+        this._crashLog=(this._crashLog||[]); this._crashLog.push(String(info));
       }
     }
     if(this._renderErrMsg&&this.cx){ try{ this._drawRenderErr(this.cx); }catch(e){} }
@@ -5946,6 +6050,9 @@ class Component extends DCLogic {
         } }
     }
     const jetting=(p.swimMode==='jet'&&p.stam>0)||(p.inkJetT||0)>0;
+    // the touch SPRINT button lights up while jet-swimming, so any change the game makes on its own
+    // (running out of breath, an ink escape) has to reach the DOM too
+    if(this._mobileOn()&&this._jetUiWas!==p.swimMode){ this._jetUiWas=p.swimMode; this.setState({qv:this.state.qv+1}); }
     p.stuckT=Math.max(0,(p.stuckT||0)-dt); let stuckMul=p.stuckT>0?0.45:1; // cucumber tubules gum you up
     if(this.conchs&&this.conchs.some(c2=>c2.carried)) stuckMul*=0.8; // a conch in the arms is heavy
     const sp0=Math.hypot(p.vx,p.vy), vmax=((jetting?300:145)+(p.jetCd>0?250:0)+(p.strike?120:0))*stuckMul;
@@ -6180,7 +6287,7 @@ class Component extends DCLogic {
         const hasCache=this.natalDen.cache&&this.natalDen.cache.length;
         this.toast('the ruin of your birth-den');
         if(hasCache) this.toast('something of your line is in the silt');
-        this._note('natal','What the old den keeps','Every hatchling drifts to a new reef, so the den you were born in lies a whole ocean behind you. What you find at the map\u2019s edge is only its ruin, '+this.natalDen.reason+'.'+(hasCache?' But your line\u2019s keepsakes still lie buried here: collect ['+this._keyName('collect')+'] to dig them out and carry them to your new home.':' Nothing of your forebears endured the years.')); }
+        this._note('natal','What the old den keeps','A cuttlefish hatchling is independent from its first day and wanders off alone, so by the time you are grown the den you hatched in lies a long way behind you. What you find at the map\u2019s edge is only its ruin, '+this.natalDen.reason+'.'+(hasCache?' But your line\u2019s keepsakes still lie buried here: collect ['+this._keyName('collect')+'] to dig them out and carry them to your new home.':' Nothing of your forebears endured the years.')); }
       // ---- THE OPEN BLUE: past the reef shelf the floor falls away. Life cannot be sustained out here ----
       { const od=this.openDepth(p.x,p.y);
         if(od>0.10&&!p.demo&&!this._leftReef){ this._leftReef=true;
@@ -6336,7 +6443,7 @@ class Component extends DCLogic {
             for(let i=0;i<10;i++){ const aa=Math.random()*6.28; this.parts.push({x:f.x+Math.cos(aa)*14,y:f.y+Math.sin(aa)*10,vx:Math.cos(aa)*50,vy:Math.sin(aa)*50,t:0,life:0.9,kind:'bubble'}); }
             this.parts.push({x:f.x,y:f.y-16,vx:0,vy:-20,t:0,life:1,kind:'emote',txt:'!'});
             this.toast('the cocoon bursts, the parrotfish bolts'); this._qEvt('cocoon'); this._stat('disturber');
-            this._note('cocoon','The sleeping bag of slime','At night many parrotfish spin a mucus cocoon around themselves. Experiments show it fends off biting parasites; the old idea that it also masks their scent from eels is still just a good guess. Burst one and the sleeper wakes in a panic. Rude, but educational.'); }
+            this._note('cocoon','A cocoon of mucus','At night many parrotfish spin a mucus cocoon around themselves. Experiments show it fends off biting parasites; the old idea that it also masks their scent from eels is still just a good guess. Burst one and the sleeper wakes in a panic — which tells you the cocoon is a shelter, not a wall.'); }
           if(f.startleT>0){ f.asleep=false; f.x+=Math.cos(f.dir)*130*dt; f.y+=Math.sin(f.dir)*130*dt; }
           continue; }
         f._poked=false;
@@ -6349,7 +6456,7 @@ class Component extends DCLogic {
           if(f._sandN>=4){ f._sandN=0;
             this.sandPatches.push({x:f.x-Math.cos(f.dir)*24,y:f.y-Math.sin(f.dir)*24,r:34+Math.random()*18,ph:Math.random()*6.28,bornT:this.tg,temp:true});
             for(let i=0;i<5;i++){ const aa=Math.random()*6.28; this.parts.push({x:f.x,y:f.y+6,vx:Math.cos(aa)*24,vy:Math.sin(aa)*24+10,t:0,life:0.7,kind:'sand'}); } }
-          if(!p.demo&&!this.notesShown['parrot']&&Math.hypot(f.x-p.x,f.y-p.y)<200) this._note('parrot','The reef\u2019s sandmakers','Parrotfish scrape algae off coral with a beak of fused teeth, grind the rock in their gut, and poop out fine white sand, a big one makes hundreds of pounds a year. Your favourite beach may be parrotfish. The fresh patches they leave are soft enough to bury in, until the current packs them down. At night they wrap themselves in a mucus cocoon to sleep.'); } }
+          if(!p.demo&&!this.notesShown['parrot']&&Math.hypot(f.x-p.x,f.y-p.y)<200) this._note('parrot','The reef\u2019s sandmakers','Parrotfish rasp at coral rock with a beak of fused teeth, chewing it fine to get at the algae in and on it, and pass the rock as sand. A big one can produce hundreds of kilos a year, and on some reefs that is a real share of the white sand. The fresh patches they leave are soft enough to bury in until the current packs them down. Several species sleep wrapped in a cocoon of their own mucus.'); } }
         if(f.bite>0) f.bite-=dt; }
       if(f.kind==='squirrel'){ // nocturnal: hug the home crevice by day, roam and hunt by night
         if(nightF<0.4){ const a=Math.atan2(f.gy-f.y,f.gx-f.x); f.dir=a; const d=Math.hypot(f.gx-f.x,f.gy-f.y);
@@ -6380,7 +6487,7 @@ class Component extends DCLogic {
         if(n._stingCd<=0&&Math.hypot(n.x-p.x,n.y-p.y)<44){ n._stingCd=2.4; p.hp=Math.max(0,p.hp-0.6); p.hurtT=0.6; this.shake=Math.max(this.shake,0.16); this._applyVenom(0.8,5); p._lastCause='a stingray’s barb';
           const aa=Math.atan2(p.y-n.y,p.x-n.x); p.vx+=Math.cos(aa)*220; p.vy+=Math.sin(aa)*220; this._sfx('hurt',{vol:0.5});
           this.parts.push({x:p.x,y:p.y-22,vx:0,vy:-18,t:0,life:1,kind:'emote',txt:'\u26a1'});
-          this._note('stingray','The barb in the tail','A stingray never hunts you, but its whip-tail carries a venomous, serrated barb it lashes out in defence. Give a resting ray a wide berth, or approach only from above.'); } }
+          this._note('stingray','The barb in the tail','A stingray never hunts you, but its whip-tail carries a venomous, serrated barb, and it lashes that tail up and over its own back in defence. Never crowd one from behind or above. Give a resting ray a wide berth and it will simply ignore you.'); } }
       // turtles GRAZE: pause over seagrass, crop it, leave drifting blade bits (small fish snack on them)
       if(n.kind==='turtle'){ n.grazeT=Math.max(0,(n.grazeT||0)-dt);
         if(n.grazeT<=0&&this.biomeAt(n.x,n.y)==='seagrass meadow'&&Math.random()<0.008){ n.grazeT=3.5+Math.random()*3; }
@@ -6392,7 +6499,7 @@ class Component extends DCLogic {
         for(const q of this.prey){ if(q.kind==='crab'&&Math.hypot(q.x-n.x,q.y-n.y)<130){ q.fleeT=1; q.dir=Math.atan2(q.y-n.y,q.x-n.x); } }
         if(Math.random()<0.0012){ this.clams.push({x:n.x-Math.cos(n.dir)*40,y:n.y-Math.sin(n.dir)*40,ph:Math.random()*6.28,dug:false});
           if(Math.hypot(n.x-p.x,n.y-p.y)<520&&!p.demo){ this.toast('the ray uncovers something');
-            this._note('ray','Follow the digger','Rays excavate buried prey with jets of water from their wings, and smaller hunters shadow them to snatch what they miss. Following a feeding ray is a real foraging strategy.'); } } }
+            this._note('ray','Follow the digger','Rays beat their wings against the seabed to blow the sand off buried clams and worms, and smaller hunters shadow them to snatch whatever bolts. Following a feeding forager is a real, documented strategy.'); } } }
       // signal a turtle: it acknowledges you, drifts over, and — if you stay calm beside it — shares its wake
       if(n.kind==='turtle'&&!p.demo){ const dT=Math.hypot(n.x-p.x,n.y-p.y);
         if(p.sigCd>2.3&&dT<220){ n.tx=p.x; n.ty=p.y; n.friendT=Math.min(30,(n.friendT||0)+12);
@@ -6542,7 +6649,7 @@ class Component extends DCLogic {
           this._note('balance','A self-righting system','Reefs can stabilize themselves: as algae spreads, grazers converge and eat faster than it grows, and the bloom collapses on its own. It fails only when the grazers are gone, which is why a sick urchin population is reef-wide news.'); } } }
       // first swim-by: a science note about algae/reef balance
       if(!p.demo&&!this.notesShown['algae']){ for(const al of this.algae){ if(Math.hypot(al.x-p.x,al.y-p.y)<al.r+40){
-        this._note('algae','The green tide','Algae is always trying to overtake a reef. Grazers, urchins, parrotfish, surgeonfish, mow it back; farmer damselfish even tend private algae patches. When grazers vanish, algae smothers the coral. A healthy reef is a lawn kept trim by many mouths.'); break; } } } }
+        this._note('algae','The green tide','Algae is always trying to overtake a reef. Grazers — urchins, parrotfish, surgeonfish — mow it back, and farmer damselfish tend private patches. Take the grazers away and algae can overgrow the coral outright; it has happened on real reefs. A healthy reef is a lawn kept trim by many mouths.'); break; } } } }
     // farmer damselfish: each tends ONE garden — weeds it, shoos urchins and you, and keeps it from spreading.
     // Tear out a tended patch and its farmer erupts: a furious, pecking chase.
     if(this.damsels) for(const dm of this.damsels){ dm.ph+=dt; dm.cd=Math.max(0,dm.cd-dt); dm.dash=Math.max(0,dm.dash-dt); dm.angryT=Math.max(0,(dm.angryT||0)-dt);
@@ -6561,7 +6668,7 @@ class Component extends DCLogic {
         continue; }
       if(!p.demo&&dpl<120&&dm.cd<=0&&dm.garden){ dm.dash=0.5; dm.cd=1.8; dm.dir=Math.atan2(dpy,dpx);
         if(dpl<64&&Math.hypot(p.vx,p.vy)<200){ p.vx+=dpx/dpl*70; p.vy+=dpy/dpl*70; } // a shove away from the garden
-        if(!this.notesShown['damsel']) this._note('damsel','The reef\u2019s fiercest farmer','Damselfish are tiny but ferocious gardeners: they weed and fertilize a private patch of algae and drive off anything that comes near, fish many times their size, divers, even you. Their tended plots never overgrow: farming keeps the bloom in check.'); }
+        if(!this.notesShown['damsel']) this._note('damsel','The reef\u2019s fiercest farmer','Damselfish are tiny but ferocious gardeners: they weed unwanted seaweeds out of a private patch and drive off anything that comes near — fish many times their size, divers, even you. A tended plot stays a plot, which is the difference between farming and a bloom.'); }
       // shoo urchins that creep toward the garden
       if(dm.garden&&dm.cd<=0){ for(const u of this.urchins){ if(Math.hypot(u.x-dm.gx,u.y-dm.gy)<70){ dm.dash=0.4; dm.cd=1.2; dm.dir=Math.atan2(u.y-dm.y,u.x-dm.x);
         const ua=Math.atan2(u.y-dm.gy,u.x-dm.gx); u.x+=Math.cos(ua)*6; u.y+=Math.sin(ua)*6; if(u._tgt===dm.garden) u._tgt=null; break; } } }
@@ -6646,7 +6753,7 @@ class Component extends DCLogic {
               if(Math.random()<0.35){ const bx=c.x-Math.cos(c.dir)*18, by=c.y-Math.sin(c.dir)*18;
                 this.clams.push({x:bx,y:by,ph:Math.random()*6.28,dug:false});
                 if(!p.demo&&Math.hypot(bx-p.x,by-p.y)<420){ this.parts.push({x:bx,y:by-10,vx:0,vy:-14,t:0,life:1,kind:'emote',txt:'\u2727'});
-                  this._note('conch','The reef\u2019s plow','A conch drags itself on a muscular foot, plowing the top layer of sand as it goes, mostly turning up nothing, sometimes a buried clam. It works by night and shutters itself by day.'); } } } } }
+                  this._note('conch','The reef\u2019s plow','A conch lurches along on a muscular foot, grazing algae and detritus off the top layer of sand. It works by night and shutters itself by day. The occasional buried clam it turns up for you is a liberty we took.'); } } } } }
         // a rare, quiet end: the conch dies and its empty shell becomes a prized keepsake
         if(Math.random()<dt*0.00004){ this.conchs.splice(ci,1);
           this.shellsC.push({x:c.x,y:c.y,rot:Math.random()*6.28,got:false,conchShell:true});
@@ -6779,7 +6886,27 @@ class Component extends DCLogic {
       const isShark=g.kind==='shark';
       const nightHunter=g.kind==='octo';
       const sleeps = nightHunter ? day>0.7 : (!isShark&&day<0.3);
-      if(sleeps){
+      // A DISTURBED SLEEPER: barge into a dozing hunter, or jab it, and it comes awake and comes for
+      // you. It stays roused for a while after the chase breaks, then drifts back down to sleep.
+      g.wokeT=Math.max(0,(g.wokeT||0)-dt);
+      if(sleeps&&g.wokeT<=0&&!p.demo&&!p.god&&p.graceT<=0){
+        const dz=Math.hypot(g.x-p.x,g.y-p.y);
+        const poked=p.strike&&p.strike.t<0.22&&dz<96;
+        // buried you're safe; well camouflaged you can ease past; barrelling into it is another matter
+        const bumpR=p.buried?0:(p.camoF>0.5?42:86);
+        const blundered=dz<bumpR&&Math.hypot(p.vx,p.vy)>45;
+        if(poked||blundered){
+          g.wokeT=poked?10:8; g.st='chase'; g.chaseT=0; g.notice=1; g.fedT=0; g._returnT=0;
+          g.tx=p.x; g.ty=p.y;
+          this.shake=Math.max(this.shake,0.14); this._sfx&&this._sfx('hurt',{vol:0.4,rate:0.8});
+          this.parts.push({x:g.x,y:g.y-26,vx:0,vy:-18,t:0,life:1.2,kind:'emote',txt:'!'});
+          const nm={shark:'shark',grouper:'grouper',cuda:'barracuda',octo:'octopus'}[g.kind]||'hunter';
+          this.notify(poked?('you jab the sleeping '+nm+' — it wakes furious'):('you barge into the sleeping '+nm+' — it wakes'),'raid');
+          this._gcount&&this._gcount('woke_hunter');
+          this._note('wakehunter','Let sleeping hunters lie','Reef hunters rest too: groupers hang motionless in the coral by night, sharks idle on the sand, an octopus tucks into a crevice by day. A resting animal is not a safe one. Startle it at arm’s length and it comes awake with the reflex it was built for. Give a sleeper a wide berth, or pass slow and hidden.');
+        }
+      }
+      if(sleeps&&g.wokeT<=0){
         // an octopus never dozes in the open — by day it slinks to the nearest coral/rock and tucks in
         if(nightHunter){ if(g.den==null){ let best=null,bd=1e9; for(const o of this._decorNear(g.x,g.y)){ if((o.t==='rock'||o.t==='coral'||o.t==='bommie')&&o.r>=24){ const d=Math.hypot(o.x-g.x,o.y-g.y); if(d<bd){bd=d;best=o;} } } g.den=best?{x:best.x,y:best.y}:{x:g.x,y:g.y}; }
           const d=Math.hypot(g.den.x-g.x,g.den.y-g.y);
@@ -7137,12 +7264,19 @@ class Component extends DCLogic {
   // ================= RENDER =================
   _render(){
     const ctx=this.cx, VW=this.VW, VH=this.VH, t=this.tg, p=this.p;
+    // FRAME RESET: a draw-time throw leaves the context mid-save() with a live transform or clip.
+    // Unwind whatever the last frame left behind and start from identity, so one bad draw can
+    // never corrupt every frame after it (that read as a permanent freeze).
+    if(ctx){ for(let i=0;i<24;i++) ctx.restore();
+      ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+      ctx.shadowBlur=0; ctx.shadowColor='rgba(0,0,0,0)'; ctx.filter='none';
+      ctx.save(); }
     const day=this._dayF();
     // intro prologue owns the whole screen — an authored stage, not live gameplay
     if(this.cine){ this._drawCineStage(ctx); return; }
     const shx=this.shake>0?(Math.random()-0.5)*8*this.shake:0, shy=this.shake>0?(Math.random()-0.5)*8*this.shake:0;
     this.shake=Math.max(0,this.shake-0.016);
-    const Z=1.62, vw=VW/Z, vh=VH/Z;
+    const Z=this._Z(), vw=VW/Z, vh=VH/Z;
     // during the hatching cutscene the camera pans to the CLUTCH (else, far from home, the hatchlings play off-screen)
     const focX=this.hatchScene?this.hatchScene.camX:p.x, focY=this.hatchScene?this.hatchScene.camY:p.y;
     const camX=Math.max(0,Math.min(this.WORLD.w-vw,focX-vw/2))+shx;
@@ -7377,7 +7511,11 @@ class Component extends DCLogic {
       else { ctx.fillStyle='rgba(255,244,214,'+(0.9*(1-k))+')'; ctx.beginPath(); ctx.arc(pt.x,pt.y,2.6*(1-k),0,6.28); ctx.fill(); } }
     // rings (burst/signal)
     for(const rg of this.rings){ const k=rg.t/1.6; const r=rg.max*k;
-      ctx.strokeStyle='rgba('+rg.col+','+(0.5*(1-k))+')'; ctx.lineWidth=3*(1-k)+1;
+      // a delayed ring (the passing-cloud's trailing band) starts at a negative age: skip it until
+      // it has a real radius — canvas throws on a negative one, which used to abort the whole frame
+      if(!(r>0)||!Number.isFinite(r)||!Number.isFinite(rg.x)||!Number.isFinite(rg.y)) continue;
+      const ka=Math.max(0,Math.min(1,k));
+      ctx.strokeStyle='rgba('+rg.col+','+(0.5*(1-ka))+')'; ctx.lineWidth=3*(1-ka)+1;
       ctx.beginPath(); ctx.arc(rg.x,rg.y,r,0,6.28); ctx.stroke(); }
     // burst light
     if(p.burstT<2.6){ const k=p.burstT/2.6; const r=520*(1-k*0.3);
@@ -7391,7 +7529,7 @@ class Component extends DCLogic {
     if(day<0.98){ const tintA=(1-day)*0.30;
       const lt=(p.lightT||0);
       if(lt>0&&!p.demo){ const k=Math.min(1,lt/1.6); // full glow, fading out over the last moments
-        const Zc=1.62, px=(p.x-(this._camXr||0))*Zc, py=(p.y-(this._camYr||0))*Zc;
+        const Zc=this._Z(), px=(p.x-(this._camXr||0))*Zc, py=(p.y-(this._camYr||0))*Zc;
         const rad=340*(0.7+0.3*k);
         const g2=ctx.createRadialGradient(px,py,rad*0.15,px,py,rad);
         const c=this._ph('#06171f');
@@ -8739,7 +8877,8 @@ class Component extends DCLogic {
     if((this._relief||0)>=1) return;
     const night=1-day;
     ctx.save();
-    for(const m of this.plankton){ if(m.x<cx-40||m.x>cx+this.VW/1.62+40||m.y<cy-40||m.y>cy+this.VH/1.62+40) continue;
+    const Zp=this._Z();
+    for(const m of this.plankton){ if(m.x<cx-40||m.x>cx+this.VW/Zp+40||m.y<cy-40||m.y>cy+this.VH/Zp+40) continue;
       const tw=0.4+0.6*Math.sin(this.tg*2+m.ph);
       const a=dens*(m.glow?0.5:0.32)*tw*(0.4+night*0.6);
       if(m.glow&&night>0.4){ ctx.fillStyle='rgba(150,225,220,'+(a*1.1)+')'; }
@@ -9987,18 +10126,20 @@ class Component extends DCLogic {
       ctx.save(); ctx.globalAlpha=(this.bioAnn&&this.bioAnn.t<4.5)?0.35:1;
       ctx.textAlign='center'; ctx.font='italic 21px "Spectral",serif';
       const tw=ctx.measureText(txt).width;
-      const boxW=Math.max(tw+60, isMove?216:164), boxH=isMove?104:90, boxY=72;
+      // every dimension rides the UI scale, so the card matches its text at any screen size
+      const uk=this.uiScale||1;
+      const boxW=Math.min(VW-40, Math.max(tw+60*uk, (isMove?216:164)*uk)), boxH=(isMove?104:90)*uk, boxY=Math.round(64*uk)+8+(mob?60:0);
       let ucx=VW/2; const cardL2=VW-262-22;
-      if(ucx+boxW/2 > cardL2-12) ucx=Math.max(boxW/2+14, cardL2-12-boxW/2);
+      if(!mob&&ucx+boxW/2 > cardL2-12) ucx=Math.max(boxW/2+14, cardL2-12-boxW/2);
       const boxX=ucx-boxW/2;
       ctx.fillStyle='rgba(8,22,20,0.88)'; ctx.beginPath(); ctx.roundRect(boxX,boxY,boxW,boxH,11); ctx.fill();
       ctx.strokeStyle='rgba(201,162,94,0.3)'; ctx.lineWidth=1;
       ctx.beginPath(); ctx.roundRect(boxX+0.5,boxY+0.5,boxW-1,boxH-1,11); ctx.stroke();
-      if(keyIds.length) this._drawActionKeys(ctx, ucx, boxY+15, keyIds);
+      if(keyIds.length) this._drawActionKeys(ctx, ucx, boxY+15*uk, keyIds);
       ctx.fillStyle='rgba(238,232,220,0.96)'; ctx.font='italic 21px "Spectral",serif';
-      ctx.fillText(txt, ucx, boxY+boxH-24);
+      ctx.fillText(txt, ucx, boxY+boxH-24*uk);
       ctx.font='600 10px "DM Mono",monospace'; ctx.fillStyle='rgba(201,162,94,0.62)';
-      ctx.fillText((this.tut+1)+'/'+this.TUT.length+(mob?'   ·   MENU to skip':'   ·   [T] skip'), ucx, boxY+boxH-8);
+      ctx.fillText((this.tut+1)+'/'+this.TUT.length+(mob?'   ·   SKIP STEP, top left':'   ·   [T] skip'), ucx, boxY+boxH-8*uk);
       ctx.restore(); ctx.textAlign='left'; }
 
     // ========== CHARM POP ==========
