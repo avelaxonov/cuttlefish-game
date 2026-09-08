@@ -52,7 +52,7 @@ different.
 
 ### Guises
 
-Fourteen unique cephalopods "skins" to wear. Cosmetic only, earned through achievements completion.
+Fourteen unique cephalopod "skins" to wear. Cosmetic only, earned through achievement completion.
 
 | | |
 |---|---|
@@ -145,20 +145,24 @@ minutes to a whole evening.
 - Separate music and effects volumes.
 - Weather and disasters can each be switched off.
 - Heredity from realistic to off.
-- Every key rebindable.
+- Every key is rebindable.
 - The tutorial can be skipped.
 
 ---
 
 ## On the biology
 
-Field notes are generally following current science, and where the game takes a
+Field notes generally follow current science to a level fitting the casual game player, and where the game takes a
 liberty **the note would say so**.
 
-Examples of some things that are **in-game only** features, not neccessarily true to real life:
-- cuttlefish don't dig their own dens (octopuses are the diggers);
-- they have no bioluminescence light organs;
-- they can't carry all 12 stones, 12 seaweed leaves, 12 shells, and 6 driftwood at once, but in-game cuttlefish can
+Examples of some things that are **in-game only** features and not true of real cuttlefish:
+- they don't dig their own dens — they take crevices as they find them (octopuses are the diggers);
+- they don't build, wall, line, or decorate a den — again, that's octopuses;
+- they have no light organs and make no light of their own;
+- a female doesn't stand guard over her clutch — she glues the eggs down and leaves them;
+- they don't keep company, hunt alongside a friend, or warn each other;
+- they can't carry 12 stones, 12 seaweed leaves, 12 shells and 6 pieces of driftwood at once, but an in-game cuttlefish can;
+- dying doesn't usually end with waking up at home.
 
 Corrections are ALWAYS welcome!
 
@@ -166,7 +170,7 @@ Corrections are ALWAYS welcome!
 
 ## Still to come
 
-Held back from this edition: a prologue cutscene, passive communication with the shore, achievement-like charms, and some chain quests. Also under consideration: an installable offline version and possibly a Russian and Japanese translations.
+Held back from this edition: a prologue cutscene, passive communication with the shore, achievement-like charms, and some chain quests. Also under consideration: an installable offline version and possibly Russian and Japanese translations.
 
 ---
 
