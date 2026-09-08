@@ -1958,7 +1958,7 @@ class Component extends DCLogic {
         ok((d.harm?'birth defect':'quirk')+' applied: '+d.name+' — '+d.desc); break; }
       case 'mate': { // force a courted mate escorting you (for testing the ritual)
         let n=this.npcs.find(x=>x.kind==='cuttle'); if(!n){ n={kind:'cuttle',x:p.x+60,y:p.y+40,dir:0,ph:Math.random()*6.28,tx:0,ty:0,sigT:0}; this.npcs.push(n); }
-        n.x=p.x+60; n.y=p.y+40; p.growth=Math.max(p.growth,0.8); p.mate=n; p.mateStage='escort'; n.mate=true; n.following=true; n.followT=1e9; n.bond=100; ok('a mate now follows you — lead them to a den'); break; }
+        n.x=p.x+60; n.y=p.y+40; p.growth=Math.max(p.growth,0.8); p.mate=n; p.mateStage='escort'; p._finalCourt='done'; n.mate=true; n.following=true; n.followT=1e9; n.bond=100; ok('a mate now follows you — lead them to a den'); break; }
       case 'lay': { p.growth=Math.max(p.growth,0.8);
         const den=this.dens.find(d=>d.home)||this.dens[0];
         p.eggsLaid=true; p.eggClutch={x:den.x,y:den.y,fan:100,t:0,dev:isNaN(num)?0:num,hatched:false,eggs:12+((Math.random()*5)|0),lost:{spoiled:0,eaten:0,weak:0},raidT:8,quality:!!p.qualityMate};
@@ -5377,7 +5377,7 @@ class Component extends DCLogic {
   }
   _courtSignal(n){ const p=this.p;
     if(p.mate&&p.mate===n){ n.bond=Math.min(100,(n.bond||0)+8);
-      this.toast(p._finalCourt==='done'?'your mate is ready \u2014 lead them into your den to lay':'your mate is already at your side \u2014 lead them home to your den'); return; }
+      this.toast('your mate is ready \u2014 lead them into your den to lay'); return; }
     if(p.mate&&p.mate!==n){ this.toast('you are already courting another'); return; }
     // basic hello note the first time
     this._note('signal','Skin speech','Cuttlefish converse in moving skin patterns: courtship stripes, warning zebra flashes. Male mourning cuttlefish have been recorded going further, holding a courtship display on the side facing a female and a female-like pattern on the side facing a rival, at the same time. (Real cuttlefish make no light of their own; the glow you cast at night is ours, not theirs.)');
@@ -5387,7 +5387,7 @@ class Component extends DCLogic {
     this._startCourt(n);
   }
   _courtWon(n){ const p=this.p;
-    p.mate=n; p.mateStage='escort'; p._finalCourt=null; p._finalCourtCd=0; n.mate=true; n.following=true; n.followT=1e9; n.bond=100;
+    p.mate=n; p.mateStage='escort'; p._finalCourt='done'; p._finalCourtCd=0; n.mate=true; n.following=true; n.followT=1e9; n.bond=100;
     p.qualityMate=!!n.quality; // a season-quality partner passes better odds to the clutch
     this.toast(this.COURT_STEPS[this.COURT_STEPS.length-1]+(n.quality?' \u2014 a strong, vivid partner':''));
     this._q('line'); this._ach('mate');
@@ -6531,10 +6531,6 @@ class Component extends DCLogic {
       // an escorted mate stays close, and its BOND rises/falls with your care
       if(n.mate&&p.mate===n){ const md=Math.hypot(n.x-p.x,n.y-p.y);
         n.tx=p.x-Math.cos(p.h)*64+Math.cos(n.ph)*10; n.ty=p.y-Math.sin(p.h)*64+Math.sin(n.ph)*10;
-        // near your HOME den, the final (longer, harder) dance plays out before you may lay
-        if(p.mateStage==='escort'&&p._finalCourt!=='done'&&!this.court&&!this.duel&&!this.inDen&&(p._finalCourtCd||0)<this.tg&&md<300){
-          const hd=(this.dens||[]).find(d=>d.home);
-          if(hd&&Math.hypot(hd.x-p.x,hd.y-p.y)<230){ this.toast('the final dance, echo the pattern'); this._startCourt(n,{stage:'final'}); } }
         // threat: a predator near the mate alarms it and bleeds bond fast
         let threat=false; for(const g of this.preds){ if(g.st==='doze') continue; if(Math.hypot(g.x-n.x,g.y-n.y)<200){ threat=true; break; } }
         n.alarm=threat;
