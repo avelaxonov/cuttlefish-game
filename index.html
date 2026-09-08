@@ -7714,7 +7714,7 @@ class Component extends DCLogic {
     const wt=performance.now()/1000;
     const breath=1+0.022*Math.sin(wt*(info.rest?0.9:1.5));
     ctx.scale(breath,breath);
-    this._cuttle(ctx,0,0,info.rest?0.12:-0.12,wt*(info.rest?0.5:0.8),Math.max(day,0.5),1.0,p,'#8a7256');
+    this._cuttle(ctx,0,0,info.rest?0.12:-0.12,wt*(info.rest?0.5:0.8),Math.max(day,0.5),1.0,p,null); // player's chosen guise shows in the den
     ctx.restore();
     if(info.rest){ ctx.font='22px "DM Mono",monospace'; ctx.fillStyle=this._hexA('#9bd6d0',0.5+0.3*Math.sin(wt*2));
       ctx.fillText('z',70,110); ctx.font='15px "DM Mono",monospace'; ctx.fillText('z',96,86); }
